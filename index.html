@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Apartments Artee Links</title>
   <style>
-    /* Global Animations */
+    /* Animations */
     @keyframes slideIn {
       from { transform: translateY(-50px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
@@ -49,7 +49,7 @@
       transform: scale(1.1);
     }
     
-    /* Buttons (for all clickable links beneath header) */
+    /* Buttons – All clickable links below the header */
     .btn {
       display: flex;
       align-items: center;
@@ -57,31 +57,28 @@
       max-width: 500px;
       margin: 0.5rem auto;
       padding: 1rem;
-      background: #1a1a1a;
+      background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
       border-radius: 12px;
       color: white;
       text-decoration: none;
       cursor: pointer;
       touch-action: manipulation;
       user-select: none;
-      
-      /* Initial state: visible immediately, no scroll delay */
-      opacity: 1;
-      transform: translateY(0);
-      transition: background 0.3s, transform 0.1s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s;
     }
     .btn:hover {
-      background: #2a2a2a;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.6);
     }
     .btn:active {
-      transform: scale(0.95);
+      transform: scale(0.98);
     }
-    /* Scale down all icons inside buttons consistently */
+    /* All icons inside buttons are scaled to 40px */
     .btn img {
       width: 40px;
       height: 40px;
       object-fit: cover;
-      margin-right: 0.75rem;
     }
     
     .section-title {
@@ -97,13 +94,38 @@
       margin: 1rem auto;
       border-radius: 12px;
       cursor: pointer;
-      opacity: 1;
-      transform: translateY(0);
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .tourist-map:hover {
       transform: scale(1.02);
       box-shadow: 0 4px 10px rgba(255,255,255,0.3);
+    }
+    
+    /* Food Item Layout (for Places to eat) */
+    .food-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      /* Inherit the .btn gradient, padding, and hover effects */
+    }
+    .food-item .food-left {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      overflow: hidden;
+    }
+    .food-item .food-text {
+      margin-left: 0.75rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .food-item .more-dots {
+      margin-left: 1rem;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      color: #fff;
     }
     
     /* FAQ Modal */
@@ -128,7 +150,7 @@
       display: flex;
       flex-direction: column;
     }
-    /* FAQ Header always visible */
+    /* FAQ Modal Header (always visible) */
     .faq-header {
       position: sticky;
       top: 0;
@@ -153,7 +175,7 @@
     .close:hover {
       transform: scale(1.2);
     }
-    /* Scrollable FAQ Items */
+    /* FAQ Items */
     #faqItems {
       padding: 1rem;
       overflow-y: auto;
@@ -199,7 +221,7 @@
   </style>
 </head>
 <body>
-  <!-- Header Logo, Title and Intro -->
+  <!-- Header: Logo, Title & Intro -->
   <img src="https://i.imgur.com/v7LZK8o.png" alt="Artee Logo" class="logo" />
   <h1>Apartments Artee</h1>
   <p>We hope you are enjoying your stay! Anything you need? Please contact us!</p>
@@ -212,10 +234,10 @@
     <a href="https://artee.ba"><img src="icons/globe.png" alt="Website" /></a>
   </div>
 
-  <!-- Tourist Map as an Image -->
+  <!-- Tourist Map -->
   <img src="tourist_map.jpg" alt="Free Tourist Map" class="tourist-map" onclick="window.open('https://www.google.com/maps/d/u/0/viewer?mid=1uCyDA91a0rdYrHQRMJWgpgQ0vMgq4GY', '_blank')" />
 
-  <!-- Review, FAQ, and Places to Visit Buttons -->
+  <!-- Primary Buttons -->
   <a class="btn" href="https://g.page/r/CWr7lDMZxyG_EBM/review">
     <img src="icons/google.png" alt="Google Review" />
     Google Review
@@ -231,23 +253,43 @@
 
   <!-- Places to Eat Section -->
   <h2 class="section-title">Places to eat: (Click for info 👇)</h2>
-  <a class="btn" href="https://g.co/kgs/p2xq6eC">
-    <img src="icons/burek.png" alt="Buregdzinica Sac" />Buregdžinica Sac
+  <a class="btn food-item" href="https://g.co/kgs/p2xq6eC">
+    <div class="food-left">
+      <img src="icons/burek.png" alt="Buregdzinica Sac" />
+      <span class="food-text">Buregdžinica Sac</span>
+    </div>
+    <span class="more-dots">&#8942;</span>
   </a>
-  <a class="btn" href="https://g.co/kgs/DVr6xK8">
-    <img src="icons/ascinica.png" alt="ASDZ Ascinica" />ASDZ Ascinica
+  <a class="btn food-item" href="https://g.co/kgs/DVr6xK8">
+    <div class="food-left">
+      <img src="icons/ascinica.png" alt="ASDZ Ascinica" />
+      <span class="food-text">ASDZ Ascinica</span>
+    </div>
+    <span class="more-dots">&#8942;</span>
   </a>
-  <a class="btn" href="https://g.co/kgs/5jmY8K7">
-    <img src="icons/nanina.png" alt="Nanina Kuhinja" />Nanina Kuhinja
+  <a class="btn food-item" href="https://g.co/kgs/5jmY8K7">
+    <div class="food-left">
+      <img src="icons/nanina.png" alt="Nanina Kuhinja" />
+      <span class="food-text">Nanina Kuhinja</span>
+    </div>
+    <span class="more-dots">&#8942;</span>
   </a>
-  <a class="btn" href="https://g.co/kgs/UroLfoD">
-    <img src="icons/zeljo.png" alt="Zeljo" />Cevabdzinica Zeljo
+  <a class="btn food-item" href="https://g.co/kgs/UroLfoD">
+    <div class="food-left">
+      <img src="icons/zeljo.png" alt="Cevabdzinica Zeljo" />
+      <span class="food-text">Cevabdzinica Zeljo</span>
+    </div>
+    <span class="more-dots">&#8942;</span>
   </a>
-  <a class="btn" href="https://g.co/kgs/XVodkQo">
-    <img src="icons/chipas.png" alt="Chipas" />Chipas
+  <a class="btn food-item" href="https://g.co/kgs/XVodkQo">
+    <div class="food-left">
+      <img src="icons/chipas.png" alt="Chipas" />
+      <span class="food-text">Chipas</span>
+    </div>
+    <span class="more-dots">&#8942;</span>
   </a>
 
-  <!-- Follow Us Section (styled as button links like the others) -->
+  <!-- Follow Us Section -->
   <h2 class="section-title">Follow Us</h2>
   <a class="btn" href="https://instagram.com/apartmentsartee">
     <img src="icons/instagram.png" alt="Instagram" />
@@ -326,8 +368,8 @@
       </div>
     </div>
   </div>
-
-  <!-- Script to ensure FAQ accordion (one open at a time) -->
+  
+  <!-- Script: FAQ Accordion (one open at a time) -->
   <script>
     const faqItems = document.querySelectorAll('#faqItems details');
     faqItems.forEach(item => {
@@ -339,12 +381,6 @@
             }
           });
         }
-      });
-    });
-    // Make elements visible immediately on page load
-    document.addEventListener("DOMContentLoaded", function() {
-      document.querySelectorAll('.btn, .tourist-map, .section-title, .logo').forEach(el => {
-        el.classList.add('visible');
       });
     });
   </script>
