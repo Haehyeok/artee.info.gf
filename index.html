@@ -16,13 +16,14 @@
       font-family: 'Poppins', sans-serif;
       text-align: center;
     }
-    /* Full width container */
+    /* Constrain content in a centered container with some breathing space */
     .container {
-      width: 100%;
-      padding: 0;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 20px;
       box-sizing: border-box;
     }
-    /* Header Logo – loaded from your icons folder */
+    /* Header Logo – loaded from icons folder, circular */
     .logo {
       width: 100px;
       height: 100px;
@@ -32,7 +33,6 @@
       object-fit: cover;
       display: block;
     }
-    /* Title & Intro */
     h1 {
       font-size: 2rem;
       margin: 10px 0;
@@ -41,7 +41,7 @@
     p {
       margin: 10px 0;
     }
-    /* Social Icons */
+    /* Social Icons Row */
     .social-row {
       display: flex;
       justify-content: center;
@@ -59,11 +59,12 @@
     .social-row img:hover {
       transform: scale(1.1);
     }
-    /* Map Image: Full width (same as buttons) */
+    /* Map Image: Follows the width of the container (same as buttons) */
     .tourist-map {
       width: 100%;
       display: block;
       border-radius: 4px;
+      margin: 20px 0;
       cursor: pointer;
       transition: transform 0.3s ease;
     }
@@ -79,14 +80,15 @@
     /* Divider Gap */
     .divider {
       height: 1px;
-      width: 100%;
+      width: 90%;
       background: #fff;
       opacity: 0.5;
-      margin: 15px 0 30px;
+      margin: 15px auto 30px;
     }
     /* BUTTON STYLE */
-    /* The buttons now take up 100% width of the container. They use a grid layout with fixed left/right cells (60px each) and centered text.
-       They have a subtle vertical gradient, no visible border, and a white glow from the box-shadow. */
+    /* Buttons take 100% of the container's width.
+       They are flat black by default (no gradient) and show a subtle vertical gradient when pressed.
+       They have a white glow around them via a white box-shadow. */
     .btn-grid {
       width: 100%;
       height: 55px;
@@ -94,26 +96,26 @@
       grid-template-columns: 60px auto 60px;
       align-items: center;
       margin: 10px 0;
-      background: linear-gradient(to bottom, #000, #222);
-      border-radius: 4px; /* Slight curve */
+      background: #000; /* flat black when not pressed */
+      border-radius: 8px;
       text-decoration: none;
       color: #fff;
       font-size: 1rem;
       font-weight: 500;
       transition: transform 0.2s ease, background 0.2s ease;
-      /* White glow around the button (with a smaller top glow and larger bottom shadow) */
-      box-shadow: 0 -2px 4px rgba(255, 255, 255, 0.2),
-                  0 4px 10px rgba(0, 0, 0, 0.8),
-                  0 0 10px rgba(255, 255, 255, 0.6);
+      box-shadow: 0 -2px 4px rgba(255,255,255,0.2),
+                  0 4px 10px rgba(0,0,0,0.8),
+                  0 0 10px rgba(255,255,255,0.6);
     }
     .btn-grid:hover {
-      background: linear-gradient(to bottom, #000, #333);
+      /* Slight lift on hover */
       transform: translateY(-2px);
     }
     .btn-grid:active {
+      /* When pressed, show a subtle vertical gradient */
+      background: linear-gradient(to bottom, #000, #222);
       transform: scale(0.98);
     }
-    /* Left & Right Icon Containers */
     .side-icon {
       width: 60px;
       height: 55px;
@@ -126,7 +128,6 @@
       height: 30px;
       object-fit: contain;
     }
-    /* Center Text Container */
     .btn-text {
       text-align: center;
       font-size: 1rem;
@@ -135,13 +136,12 @@
       white-space: nowrap;
       text-overflow: ellipsis;
     }
-    /* Section Titles */
     .section-title {
       font-size: 1.2rem;
       font-weight: 600;
       margin: 30px 0 10px;
     }
-    /* FAQ & Fullscreen Modal Styles */
+    /* FAQ Modal Styling */
     #faqModal, #imageModal {
       display: none;
       position: fixed;
@@ -155,10 +155,10 @@
     #faqContent {
       background: #fff;
       color: #000;
-      width: 100%;
+      width: 90%;
       max-width: 400px;
       margin: 5% auto;
-      border-radius: 4px;
+      border-radius: 8px;
       max-height: 80vh;
       display: flex;
       flex-direction: column;
@@ -196,7 +196,7 @@
       background: #f3f3f3;
       padding: 10px;
       margin-bottom: 10px;
-      border-radius: 4px;
+      border-radius: 8px;
       transition: background 0.3s;
     }
     .faq-item summary {
@@ -221,12 +221,13 @@
     .faq-item a:hover {
       text-decoration: underline;
     }
+    /* Fullscreen Image Modal Content */
     #imageContent {
       background: transparent;
       width: 100%;
       max-width: 600px;
       margin: 5% auto;
-      border-radius: 4px;
+      border-radius: 8px;
       position: relative;
       display: flex;
       justify-content: center;
@@ -234,7 +235,7 @@
     }
     #imageContent img {
       width: 100%;
-      border-radius: 4px;
+      border-radius: 8px;
     }
     @keyframes slideIn {
       from { transform: translateY(-50px); opacity: 0; }
@@ -254,7 +255,7 @@
 </head>
 <body>
   <div class="container">
-    <!-- Header -->
+    <!-- Header Section -->
     <img src="icons/artee_logo.png" alt="Artee Logo" class="logo">
     <h1>Apartments Artee</h1>
     <p>We hope you're enjoying your stay! Anything you need? Please contact us!</p>
@@ -275,7 +276,7 @@
       </a>
     </div>
     
-    <!-- Map Image (same width as buttons) -->
+    <!-- Map Image (full container width) -->
     <a href="https://www.google.com/maps/d/u/0/viewer?mid=1uCyDA91a0rdYrHQRMJWgpgQ0vMgq4GY" target="_blank">
       <img src="tourist_map.jpg" alt="Tourist Map" class="tourist-map">
     </a>
@@ -290,7 +291,7 @@
       <span class="side-icon"></span>
     </a>
     
-    <!-- Divider -->
+    <!-- Divider Gap -->
     <div class="divider"></div>
     
     <!-- Additional Buttons -->
@@ -428,7 +429,7 @@
     </div>
   </div>
   
-  <!-- FAQ Accordion Script: Only one open at a time -->
+  <!-- FAQ Accordion Script -->
   <script>
     const faqItems = document.querySelectorAll('#faqItems details');
     faqItems.forEach(item => {
