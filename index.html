@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Apartments Artee Links</title>
   <style>
     /* Animations */
@@ -49,12 +49,12 @@
       transform: scale(1.1);
     }
     
-    /* Button Styles (all clickable items use the same grid layout) */
+    /* General Button Styles – same grid layout for consistency */
     .btn {
       max-width: 500px;
       margin: 0.5rem auto;
       padding: 1rem;
-      background: #1a1a1a; /* flat background */
+      background: #1a1a1a;  /* flat dark background */
       border-radius: 12px;
       color: white;
       text-decoration: none;
@@ -71,11 +71,7 @@
     .btn:active {
       transform: scale(0.98);
     }
-    /* Grid layout with three columns:
-       - Left: side icon (40px wide)
-       - Center: the text (always centered)
-       - Right: optional icon (or empty) (40px wide)
-    */
+    /* Grid layout: Three columns – left icon, centered text, right icon (or empty) */
     .btn.grid {
       display: grid;
       grid-template-columns: 40px 1fr 40px;
@@ -126,10 +122,8 @@
     #faqModal {
       display: none;
       position: fixed;
-      top: 0; 
-      left: 0;
-      width: 100%; 
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.85);
       z-index: 999;
       animation: slideIn 0.5s ease-in-out;
@@ -146,7 +140,7 @@
       display: flex;
       flex-direction: column;
     }
-    /* FAQ Header (sticky – always visible) */
+    /* FAQ Modal Header – sticky so the close (×) stays visible */
     .faq-header {
       position: sticky;
       top: 0;
@@ -208,14 +202,40 @@
       text-decoration: underline;
     }
     
-    /* Food Items: use same grid layout, with a vertical ellipsis on the right */
-    .food-item .more-dots {
-      font-size: 1.5rem;
-      color: #fff;
+    /* Food Items: Use the same .btn.grid style but remove the right-side content */
+    /* For food items the right column is left empty */
+    
+    /* Fullscreen Image Modal */
+    #imageModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 1000;
+      animation: slideIn 0.5s ease-in-out;
+    }
+    #imageContent {
+      background: transparent;
+      max-width: 90%;
+      width: 600px;
+      margin: 5% auto;
+      padding: 0;
+      border-radius: 12px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #imageContent img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
     }
     
     @media(max-width: 480px) {
-      #faqContent {
+      #faqContent, #imageContent {
         width: 90%;
         margin: 10% auto;
       }
@@ -256,32 +276,39 @@
     <span class="side-icon"></span>
   </a>
   
+  <!-- Fullscreen Image Button -->
+  <a class="btn grid" href="#image" onclick="document.getElementById('imageModal').style.display='block'; return false;">
+    <span class="side-icon"><img src="icons/fullscreen.png" alt="Fullscreen"></span>
+    <span class="btn-text">View Fullscreen Image</span>
+    <span class="side-icon"></span>
+  </a>
+  
   <!-- Places to Eat Section -->
   <h2 class="section-title">Places to eat: (Click for info 👇)</h2>
   <a class="btn grid food-item" href="https://g.co/kgs/p2xq6eC">
     <span class="side-icon"><img src="icons/burek.png" alt="Buregdžinica Sac"></span>
     <span class="btn-text">Buregdžinica Sac</span>
-    <span class="side-icon"><span class="more-dots">&#8942;</span></span>
+    <span class="side-icon"></span>
   </a>
   <a class="btn grid food-item" href="https://g.co/kgs/DVr6xK8">
     <span class="side-icon"><img src="icons/ascinica.png" alt="ASDZ Ascinica"></span>
     <span class="btn-text">ASDZ Ascinica</span>
-    <span class="side-icon"><span class="more-dots">&#8942;</span></span>
+    <span class="side-icon"></span>
   </a>
   <a class="btn grid food-item" href="https://g.co/kgs/5jmY8K7">
     <span class="side-icon"><img src="icons/nanina.png" alt="Nanina Kuhinja"></span>
     <span class="btn-text">Nanina Kuhinja</span>
-    <span class="side-icon"><span class="more-dots">&#8942;</span></span>
+    <span class="side-icon"></span>
   </a>
   <a class="btn grid food-item" href="https://g.co/kgs/UroLfoD">
     <span class="side-icon"><img src="icons/zeljo.png" alt="Cevabdzinica Zeljo"></span>
     <span class="btn-text">Cevabdzinica Zeljo</span>
-    <span class="side-icon"><span class="more-dots">&#8942;</span></span>
+    <span class="side-icon"></span>
   </a>
   <a class="btn grid food-item" href="https://g.co/kgs/XVodkQo">
     <span class="side-icon"><img src="icons/chipas.png" alt="Chipas"></span>
     <span class="btn-text">Chipas</span>
-    <span class="side-icon"><span class="more-dots">&#8942;</span></span>
+    <span class="side-icon"></span>
   </a>
   
   <!-- Follow Us Section -->
@@ -365,5 +392,29 @@
       </div>
     </div>
   </div>
+  
+  <!-- Fullscreen Image Modal -->
+  <div id="imageModal" onclick="this.style.display='none'">
+    <div id="imageContent" onclick="event.stopPropagation()">
+      <span class="close" onclick="document.getElementById('imageModal').style.display='none'">&times;</span>
+      <img src="image_full.jpg" alt="Fullscreen Image">
+    </div>
+  </div>
+  
+  <!-- Script: FAQ Accordion (one open at a time) -->
+  <script>
+    const faqItems = document.querySelectorAll('#faqItems details');
+    faqItems.forEach(item => {
+      item.addEventListener('toggle', () => {
+        if (item.open) {
+          faqItems.forEach(otherItem => {
+            if (otherItem !== item && otherItem.open) {
+              otherItem.removeAttribute('open');
+            }
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
