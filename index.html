@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Apartments Artee Links</title>
   <style>
-    /* Basic fade and slide animations */
+    /* Global Animations */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -14,7 +14,12 @@
       from { transform: translateY(-50px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
-    
+    @keyframes faqExpand {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Global Styles */
     body {
       margin: 0;
       padding: 2rem 1rem;
@@ -24,13 +29,13 @@
       text-align: center;
       animation: fadeIn 1s ease-in-out;
     }
-    
     .logo {
       width: 100px;
       margin: 0 auto 10px;
       animation: slideIn 1s ease-in-out;
     }
     
+    /* Social Icons */
     .social-row {
       display: flex;
       justify-content: center;
@@ -38,7 +43,6 @@
       margin-bottom: 2rem;
       animation: fadeIn 1s ease-in-out;
     }
-    
     .social-row img,
     .btn img {
       width: 40px;
@@ -47,6 +51,7 @@
       object-fit: cover;
     }
     
+    /* Button Styles */
     .btn {
       display: flex;
       align-items: center;
@@ -61,11 +66,9 @@
       transition: background 0.3s;
       animation: fadeIn 1s ease-in-out;
     }
-    
     .btn:hover {
       background: #2a2a2a;
     }
-    
     .btn img {
       margin-right: 0.75rem;
     }
@@ -76,19 +79,58 @@
       animation: fadeIn 1s ease-in-out;
     }
     
-    /* FAQ Modal animations and styling */
+    /* Tourist Map as Image */
+    .tourist-map {
+      display: block;
+      width: 90%;
+      max-width: 500px;
+      margin: 1rem auto;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .tourist-map:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 10px rgba(255,255,255,0.3);
+    }
+    
+    /* Follow Us Section */
+    .follow-us {
+      margin-top: 2rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .follow-us .follow-banner {
+      width: 90%;
+      max-width: 500px;
+      border-radius: 12px;
+    }
+    .follow-us .follow-buttons {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .follow-us .follow-buttons a img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    .follow-us .follow-buttons a:hover img {
+      transform: scale(1.1);
+    }
+    
+    /* FAQ Modal */
     #faqModal {
       display: none;
       position: fixed;
-      top: 0; 
-      left: 0;
-      width: 100%; 
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.85);
       z-index: 999;
-      animation: fadeIn 1s ease-in-out;
+      animation: fadeIn 0.5s ease-in-out;
     }
-    
     #faqContent {
       background: #fff;
       color: #000;
@@ -100,41 +142,56 @@
       position: relative;
       max-height: 80vh;
       overflow-y: auto;
-      animation: slideIn 1s ease-in-out;
+      animation: slideIn 0.5s ease-in-out;
     }
-    
     #faqContent .close {
       position: absolute;
-      top: 0.5rem; 
-      right: 0.75rem;
+      top: 0.5rem; right: 0.75rem;
       font-size: 1.5rem;
       color: #666;
       cursor: pointer;
+      transition: transform 0.3s;
+    }
+    #faqContent .close:hover {
+      transform: scale(1.2);
     }
     
-    #faqContent details {
+    /* FAQ Items for Easy Editing */
+    #faqItems {
+      margin-top: 1rem;
+    }
+    /* Each FAQ Item */
+    .faq-item {
       background: #f3f3f3;
       padding: 0.75rem;
       margin: 0.5rem 0;
       border-radius: 8px;
-      animation: fadeIn 1s ease-in-out;
+      animation: fadeIn 0.5s ease-in-out;
     }
-    
-    #faqContent summary {
+    .faq-item summary {
       cursor: pointer;
       font-weight: bold;
+      list-style: none;
+      outline: none;
+      transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
-    
-    /* Follow Us Section (as a picture) */
-    .follow-us {
-      margin-top: 2rem;
-      animation: fadeIn 1s ease-in-out;
+    .faq-item summary:hover {
+      background: #e0e0e0;
+      transform: scale(1.02);
     }
-    
-    .follow-us img {
-      width: 300px;
-      height: auto;
-      border-radius: 12px;
+    .faq-item[open] summary {
+      background: #dcdcdc;
+    }
+    .faq-item p {
+      margin-top: 0.5rem;
+      animation: faqExpand 0.3s ease-out;
+    }
+    .faq-item a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    .faq-item a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -151,31 +208,28 @@
     <a href="https://artee.ba"><img src="icons/globe.png" alt="Website" /></a>
   </div>
 
-  <!-- Map image -->
-  <a class="btn" href="https://www.google.com/maps/d/u/0/viewer?mid=1uCyDA91a0rdYrHQRMJWgpgQ0vMgq4GY">
-    <img src="icons/map_pin.png" alt="Map Pin" />
-    Free Tourist Map 📌
-  </a>
+  <!-- Tourist Map as an Image (clickable) -->
+  <img src="tourist_map.jpg" alt="Free Tourist Map" class="tourist-map" onclick="window.open('https://www.google.com/maps/d/u/0/viewer?mid=1uCyDA91a0rdYrHQRMJWgpgQ0vMgq4GY', '_blank')" />
 
-  <!-- Review button -->
+  <!-- Review Button -->
   <a class="btn" href="https://g.page/r/CWr7lDMZxyG_EBM/review">
     <img src="icons/google.png" alt="Google Review" />
     Google Review
   </a>
 
-  <!-- FAQ button -->
+  <!-- FAQ Button -->
   <a class="btn" href="#faq" onclick="document.getElementById('faqModal').style.display='block'; return false;">
     <img src="icons/faq.png" alt="FAQ" />
     Frequently Asked Questions / Često Postavljena Pitanja
   </a>
 
-  <!-- Places to visit -->
+  <!-- Places to Visit Button -->
   <a class="btn" href="https://www.google.com/search?q=places+to+visit+in+sarajevo">
     <img src="icons/visit.png" alt="Visit" />
     Places to visit! (Click here ✅)
   </a>
 
-  <!-- Places to eat -->
+  <!-- Places to Eat Section -->
   <h2 class="section-title">Places to eat: (Click for info 👇)</h2>
   <a class="btn" href="https://g.co/kgs/p2xq6eC">
     <img src="icons/burek.png" alt="Buregdzinica Sac" />Buregdžinica Sac
@@ -193,62 +247,82 @@
     <img src="icons/chipas.png" alt="Chipas" />Chipas
   </a>
 
-  <!-- Follow Us Section -->
+  <!-- Follow Us Section with Banner and Buttons -->
   <div class="follow-us">
-    <img src="https://via.placeholder.com/300x100?text=Follow+Us" alt="Follow Us" />
+    <!-- Replace the banner URL with your own image -->
+    <img src="https://via.placeholder.com/500x150?text=Follow+Us" alt="Follow Us Banner" class="follow-banner">
+    <div class="follow-buttons">
+      <a href="https://instagram.com/apartmentsartee"><img src="icons/instagram.png" alt="Instagram"></a>
+      <a href="https://facebook.com/apartmentsartee"><img src="icons/facebook.png" alt="Facebook"></a>
+    </div>
   </div>
 
   <!-- FAQ Modal -->
   <div id="faqModal" onclick="this.style.display='none'">
     <div id="faqContent" onclick="event.stopPropagation()">
+      <!-- Close Button -->
       <span class="close" onclick="document.getElementById('faqModal').style.display='none'">&times;</span>
       <h3>Frequently Asked Questions / Često Postavljena Pitanja</h3>
-      <details>
-        <summary>Where can I eat? / Gdje mogu jesti?</summary>
-        <p>Please take a look at our "Places to eat" section on the main QR Code page: <a href="https://linktr.ee/apartmentsartee">linktr.ee/apartmentsartee</a></p>
-        <p>Molimo pogledajte "Places to eat" dio na glavnom QR Code meniju: <a href="https://linktr.ee/apartmentsartee">linktr.ee/apartmentsartee</a></p>
-      </details>
-      <details>
-        <summary>How do I leave a review? / Kako da ostavim recenziju?</summary>
-        <p>Please click on this link: <a href="https://g.page/r/CVch6oFZsXQiEBM/review">Google Review</a></p>
-        <p>Molimo pritisnite ovaj link: <a href="https://g.page/r/CVch6oFZsXQiEBM/review">Google Review</a></p>
-      </details>
-      <details>
-        <summary>Checkout time, please?</summary>
-        <p>Check out is by 10:00. However, we can make exceptions in specific situations.</p>
-      </details>
-      <details>
-        <summary>How do I exit the parking with my car?</summary>
-        <p>Please grab an Artee Parking Exit Ticket from the small wooden box at the reception each time you want to exit the parking. Give the ticket to the man at the parking booth and leave the parking area free of charge!</p>
-      </details>
-      <details>
-        <summary>Wi-Fi Info?</summary>
-        <p>The Wi-Fi SSID and Password can be found on the Artee House Rules in your apartment!</p>
-      </details>
-      <details>
-        <summary>Payment Information?</summary>
-        <p>Payment is accepted in EURO or BAM. You can pay in cash only! Credit cards are not allowed, unfortunately...</p>
-      </details>
-      <details>
-        <summary>Can I get a baby crib?</summary>
-        <p>Yes, a crib is free of charge. Please contact us to reserve a crib.</p>
-      </details>
-      <details>
-        <summary>Parties?</summary>
-        <p>We do not host or allow parties or similar events held in our apartments. All visiting people must be checked in.</p>
-      </details>
-      <details>
-        <summary>TV and Air-Conditioning info?</summary>
-        <p>A TV and Air-Conditioning is available!</p>
-      </details>
-      <details>
-        <summary>Contact Information?</summary>
-        <p>You can contact us on the phone number: +38766075902 (Phone, Viber, WhatsApp)</p>
-      </details>
-      <details>
-        <summary>Where can I exchange money?</summary>
-        <p>Please visit this link to see a list of Exchange Offices near your location: <a href="https://www.google.com/search?q=exchange+money+near+Stari+Grad,+Sarajevo">Google Search</a></p>
-      </details>
+      <!-- FAQ Items Container: Easy to Edit -->
+      <div id="faqItems">
+        <!-- FAQ Item 1 -->
+        <details class="faq-item">
+          <summary>Where can I eat? / Gdje mogu jesti?</summary>
+          <p>Please take a look at our "Places to eat" section on the main QR Code page: <a href="https://linktr.ee/apartmentsartee" target="_blank">linktr.ee/apartmentsartee</a></p>
+          <p>Molimo pogledajte "Places to eat" dio na glavnom QR Code meniju: <a href="https://linktr.ee/apartmentsartee" target="_blank">linktr.ee/apartmentsartee</a></p>
+        </details>
+        <!-- FAQ Item 2 -->
+        <details class="faq-item">
+          <summary>How do I leave a review? / Kako da ostavim recenziju?</summary>
+          <p>Please click on this link: <a href="https://g.page/r/CVch6oFZsXQiEBM/review" target="_blank">Google Review</a></p>
+          <p>Molimo pritisnite ovaj link: <a href="https://g.page/r/CVch6oFZsXQiEBM/review" target="_blank">Google Review</a></p>
+        </details>
+        <!-- FAQ Item 3 -->
+        <details class="faq-item">
+          <summary>Checkout time, please?</summary>
+          <p>Check out is by 10:00. However, we can make exceptions in specific situations.</p>
+        </details>
+        <!-- FAQ Item 4 -->
+        <details class="faq-item">
+          <summary>How do I exit the parking with my car?</summary>
+          <p>Please grab an Artee Parking Exit Ticket from the small wooden box at the reception each time you want to exit the parking. Give the ticket to the man at the parking booth and leave the parking area free of charge!</p>
+        </details>
+        <!-- FAQ Item 5 -->
+        <details class="faq-item">
+          <summary>Wi-Fi Info?</summary>
+          <p>The Wi-Fi SSID and Password can be found on the Artee House Rules in your apartment!</p>
+        </details>
+        <!-- FAQ Item 6 -->
+        <details class="faq-item">
+          <summary>Payment Information?</summary>
+          <p>Payment is accepted in EURO or BAM. You can pay in cash only! Credit cards are not allowed, unfortunately...</p>
+        </details>
+        <!-- FAQ Item 7 -->
+        <details class="faq-item">
+          <summary>Can I get a baby crib?</summary>
+          <p>Yes, a crib is free of charge. Please contact us to reserve a crib.</p>
+        </details>
+        <!-- FAQ Item 8 -->
+        <details class="faq-item">
+          <summary>Parties?</summary>
+          <p>We do not host or allow parties or similar events held in our apartments. All visiting people must be checked in.</p>
+        </details>
+        <!-- FAQ Item 9 -->
+        <details class="faq-item">
+          <summary>TV and Air-Conditioning info?</summary>
+          <p>A TV and Air-Conditioning is available!</p>
+        </details>
+        <!-- FAQ Item 10 -->
+        <details class="faq-item">
+          <summary>Contact Information?</summary>
+          <p>You can contact us on the phone number: +38766075902 (Phone, Viber, WhatsApp)</p>
+        </details>
+        <!-- FAQ Item 11 -->
+        <details class="faq-item">
+          <summary>Where can I exchange money?</summary>
+          <p>Please visit this link to see a list of Exchange Offices near your location: <a href="https://www.google.com/search?q=exchange+money+near+Stari+Grad,+Sarajevo" target="_blank">Google Search</a></p>
+        </details>
+      </div>
     </div>
   </div>
 </body>
