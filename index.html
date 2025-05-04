@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Apartments Artee Links</title>
-  <!-- Use a modern, clean font -->
+  <!-- Import Poppins for a modern, clean look -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     /* Global Base Styles */
@@ -16,7 +16,7 @@
       font-family: 'Poppins', sans-serif;
       text-align: center;
     }
-    /* Header Logo from Icons folder as PNG */
+    /* Header Logo – loaded from icons folder */
     .logo {
       width: 100px;
       height: 100px;
@@ -53,11 +53,11 @@
     .social-row img:hover {
       transform: scale(1.1);
     }
-    /* Map Image: Same width as buttons */
+    /* Map Image: exactly the same width as the buttons */
     .tourist-map {
       width: 90%;
       max-width: 500px;
-      border-radius: 12px;
+      border-radius: 30px;
       margin: 20px auto;
       cursor: pointer;
       display: block;
@@ -66,13 +66,13 @@
     .tourist-map:hover {
       transform: scale(1.02);
     }
-    /* Leave a Review Section Text */
+    /* Leave a Review Section */
     .leave-review {
       font-size: 1.1rem;
       letter-spacing: 1px;
       margin: 15px 0 5px;
     }
-    /* Divider Gap */
+    /* Divider Gap after the review button */
     .divider {
       height: 1px;
       width: 80%;
@@ -80,18 +80,22 @@
       margin: 15px auto 30px;
       opacity: 0.5;
     }
-    /* Button Styles (Flat, minimalist with white outline) */
+    /* Button Styles – using a grid layout to mimic the sample button */
     .btn-grid {
+      width: 90%;
+      max-width: 500px;
+      height: 50px;
       display: grid;
-      grid-template-columns: 40px 1fr 40px;
+      grid-template-columns: 50px auto 50px;
       align-items: center;
       margin: 10px auto;
-      padding: 10px 20px;
       background: #000;
       border: 2px solid #fff;
-      border-radius: 25px;
+      border-radius: 30px;
       text-decoration: none;
       color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
       transition: transform 0.2s ease, background 0.2s ease;
     }
     .btn-grid:hover {
@@ -101,18 +105,20 @@
     .btn-grid:active {
       transform: scale(0.98);
     }
+    /* Left and right icon containers – fixed 50px squares */
     .side-icon {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .side-icon img {
-      width: 24px;
-      height: 24px;
+      width: 30px;
+      height: 30px;
       object-fit: contain;
     }
+    /* Center text container ensures text is centered regardless */
     .btn-text {
       text-align: center;
       font-size: 1rem;
@@ -121,13 +127,14 @@
       white-space: nowrap;
       text-overflow: ellipsis;
     }
-    /* Section Titles (e.g. "Places to Eat", "Follow Us") */
+    /* Section Titles */
     .section-title {
       font-size: 1.2rem;
       font-weight: 600;
       margin: 30px 0 10px;
     }
-    /* FAQ Modal Styling */
+    
+    /* FAQ & Fullscreen Image Modals */
     #faqModal, #imageModal {
       display: none;
       position: fixed;
@@ -137,6 +144,7 @@
       z-index: 1000;
       animation: slideIn 0.5s ease-in-out;
     }
+    /* FAQ Modal Content */
     #faqContent {
       background: #fff;
       color: #000;
@@ -206,7 +214,7 @@
     .faq-item a:hover {
       text-decoration: underline;
     }
-    /* Fullscreen Image Modal */
+    /* Fullscreen Image Modal Content */
     #imageContent {
       background: transparent;
       width: 90%;
@@ -222,6 +230,8 @@
       width: 100%;
       border-radius: 12px;
     }
+    
+    /* Keyframe animations */
     @keyframes slideIn {
       from { transform: translateY(-50px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
@@ -239,7 +249,7 @@
   </style>
 </head>
 <body>
-  <!-- Header Section -->
+  <!-- Header Section: Artee Logo, Title, Intro -->
   <img src="icons/artee_logo.png" alt="Artee Logo" class="logo">
   <h1>Apartments Artee</h1>
   <p>We hope you're enjoying your stay! Anything you need? Please contact us!</p>
@@ -270,7 +280,7 @@
   
   <!-- Google Review Button -->
   <a href="https://g.page/r/CWr7lDMZxyG_EBM/review" class="btn-grid" target="_blank">
-    <span class="side-icon"><img src="icons/google.png" alt="Google Review"></span>
+    <span class="side-icon"><img src="icons/google.png" alt="Google"></span>
     <span class="btn-text">Google Review</span>
     <span class="side-icon"></span>
   </a>
@@ -278,7 +288,7 @@
   <!-- Divider Gap -->
   <div class="divider"></div>
   
-  <!-- Additional Buttons -->
+  <!-- Additional Buttons (FAQ, Places to Visit, Fullscreen Image) -->
   <a href="#faq" class="btn-grid" onclick="document.getElementById('faqModal').style.display='block'; return false;">
     <span class="side-icon"><img src="icons/faq.png" alt="FAQ"></span>
     <span class="btn-text">FAQ</span>
@@ -346,21 +356,29 @@
       <div id="faqItems">
         <details class="faq-item">
           <summary>Where can I eat? / Gdje mogu jesti?</summary>
-          <p>Please take a look at our "Places to eat" section on the main QR Code page: <a href="https://linktr.ee/apartmentsartee" target="_blank">linktr.ee/apartmentsartee</a></p>
-          <p>Molimo pogledajte "Places to eat" dio na glavnom QR Code meniju: <a href="https://linktr.ee/apartmentsartee" target="_blank">linktr.ee/apartmentsartee</a></p>
+          <p>Please check our "Places to Eat" section on the main QR menu: 
+             <a href="https://linktr.ee/apartmentsartee" target="_blank">linktr.ee/apartmentsartee</a>
+          </p>
+          <p>Molimo pogledajte "Places to Eat" na glavnom QR meniju:
+             <a href="https://linktr.ee/apartmentsartee" target="_blank">linktr.ee/apartmentsartee</a>
+          </p>
         </details>
         <details class="faq-item">
           <summary>How do I leave a review? / Kako da ostavim recenziju?</summary>
-          <p>Please click on this link: <a href="https://g.page/r/CVch6oFZsXQiEBM/review" target="_blank">Google Review</a></p>
-          <p>Molimo pritisnite ovaj link: <a href="https://g.page/r/CVch6oFZsXQiEBM/review" target="_blank">Google Review</a></p>
+          <p>Please click on this link:
+             <a href="https://g.page/r/CVch6oFZsXQiEBM/review" target="_blank">Google Review</a>
+          </p>
+          <p>Molimo pritisnite ovaj link:
+             <a href="https://g.page/r/CVch6oFZsXQiEBM/review" target="_blank">Google Review</a>
+          </p>
         </details>
         <details class="faq-item">
           <summary>Checkout time, please?</summary>
-          <p>Check out is by 10:00. However, we can make exceptions in specific situations.</p>
+          <p>Check out is by 10:00. We can make exceptions if needed.</p>
         </details>
         <details class="faq-item">
           <summary>How do I exit the parking with my car?</summary>
-          <p>Please grab an Artee Parking Exit Ticket from the box at reception. Give it to the attendant and exit free of charge!</p>
+          <p>Please grab an Artee Parking Exit Ticket from reception and show it to the attendant.</p>
         </details>
         <details class="faq-item">
           <summary>Wi-Fi Info?</summary>
@@ -368,11 +386,11 @@
         </details>
         <details class="faq-item">
           <summary>Payment Information?</summary>
-          <p>Payment is accepted in EURO or BAM. Cash only; credit cards are not accepted.</p>
+          <p>Payment is accepted in EURO or BAM. Cash only—credit cards are not accepted.</p>
         </details>
         <details class="faq-item">
           <summary>Can I get a baby crib?</summary>
-          <p>Yes, a crib is available free of charge. Please contact us to reserve one.</p>
+          <p>A crib is available free of charge. Please contact us to reserve one.</p>
         </details>
         <details class="faq-item">
           <summary>Parties?</summary>
@@ -384,11 +402,13 @@
         </details>
         <details class="faq-item">
           <summary>Contact Information?</summary>
-          <p>Contact us at: +38766075902 (Phone, Viber, WhatsApp)</p>
+          <p>Call us at +38766075902 (Phone, Viber, WhatsApp)</p>
         </details>
         <details class="faq-item">
           <summary>Where can I exchange money?</summary>
-          <p>See this link for nearby Exchange Offices: <a href="https://www.google.com/search?q=exchange+money+near+Stari+Grad,+Sarajevo" target="_blank">Google Search</a></p>
+          <p>See this link for nearby Exchange Offices:
+             <a href="https://www.google.com/search?q=exchange+money+near+Stari+Grad,+Sarajevo" target="_blank">Google Search</a>
+          </p>
         </details>
       </div>
     </div>
@@ -402,7 +422,7 @@
     </div>
   </div>
   
-  <!-- FAQ Accordion Script: Only one FAQ open at a time -->
+  <!-- FAQ Accordion Script: Only one open at a time -->
   <script>
     const faqItems = document.querySelectorAll('#faqItems details');
     faqItems.forEach(item => {
