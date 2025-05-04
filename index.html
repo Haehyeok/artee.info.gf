@@ -28,9 +28,10 @@
       width: 100px;
       margin: 0 auto 10px;
       animation: slideIn 0.8s ease-out;
+      touch-action: manipulation;
     }
     
-    /* Social Icons (top row) */
+    /* Social Icons */
     .social-row {
       display: flex;
       justify-content: center;
@@ -48,7 +49,7 @@
       transform: scale(1.1);
     }
     
-    /* Button Styles (for all buttons below header) */
+    /* Buttons (all clickable links beneath header) */
     .btn {
       display: flex;
       align-items: center;
@@ -61,13 +62,14 @@
       color: white;
       text-decoration: none;
       cursor: pointer;
+      touch-action: manipulation;
+      user-select: none;
       
-      /* Floaty: start off hidden and shifted */
+      /* Initial floaty state */
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.5s ease-out, transform 0.5s ease-out, background 0.3s, transform 0.1s;
     }
-    /* When in view (added via JS), they become fully opaque and slide in */
     .btn.visible {
       opacity: 1;
       transform: translateY(0);
@@ -94,7 +96,7 @@
       transform: translateY(0);
     }
     
-    /* Tourist Map as Image */
+    /* Tourist Map as an Image */
     .tourist-map {
       display: block;
       width: 90%;
@@ -102,7 +104,6 @@
       margin: 1rem auto;
       border-radius: 12px;
       cursor: pointer;
-      
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.5s ease-out, transform 0.5s ease-out;
@@ -132,29 +133,41 @@
       max-width: 90%;
       width: 400px;
       margin: 5% auto;
-      padding: 1.5rem;
       border-radius: 12px;
       position: relative;
       max-height: 80vh;
-      overflow-y: auto;
-      animation: slideIn 0.5s ease-in-out;
+      display: flex;
+      flex-direction: column;
     }
-    #faqContent .close {
-      position: absolute;
-      top: 0.5rem; 
-      right: 0.75rem;
+    /* FAQ Header stays on top when scrolling */
+    .faq-header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      padding: 0.75rem;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    .faq-header h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .close {
       font-size: 2.5rem;
       color: #666;
       cursor: pointer;
       transition: transform 0.3s;
     }
-    #faqContent .close:hover {
+    .close:hover {
       transform: scale(1.2);
     }
-    
-    /* FAQ Items for Easy Editing */
+    /* Scrollable FAQ Items */
     #faqItems {
-      margin-top: 1rem;
+      padding: 1rem;
+      overflow-y: auto;
     }
     .faq-item {
       background: #f3f3f3;
@@ -188,22 +201,21 @@
       text-decoration: underline;
     }
     
-    /* Responsive adjustments for FAQ modal (phone friendly) */
     @media(max-width: 480px) {
       #faqContent {
         width: 90%;
         margin: 10% auto;
-        padding: 1rem;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Header Logo, Title and Intro -->
   <img src="https://i.imgur.com/v7LZK8o.png" alt="Artee Logo" class="logo" />
   <h1>Apartments Artee</h1>
   <p>We hope you are enjoying your stay! Anything you need? Please contact us!</p>
 
-  <!-- Social Icons (top row) -->
+  <!-- Social Icons -->
   <div class="social-row">
     <a href="https://wa.me/38761097788"><img src="icons/whatsapp.png" alt="WhatsApp" /></a>
     <a href="https://instagram.com/apartmentsartee"><img src="icons/instagram.png" alt="Instagram" /></a>
@@ -211,22 +223,18 @@
     <a href="https://artee.ba"><img src="icons/globe.png" alt="Website" /></a>
   </div>
 
-  <!-- Tourist Map as an Image (clickable) -->
+  <!-- Tourist Map as an Image -->
   <img src="tourist_map.jpg" alt="Free Tourist Map" class="tourist-map" onclick="window.open('https://www.google.com/maps/d/u/0/viewer?mid=1uCyDA91a0rdYrHQRMJWgpgQ0vMgq4GY', '_blank')" />
 
-  <!-- Review Button -->
+  <!-- Review, FAQ, and Places to Visit Buttons -->
   <a class="btn" href="https://g.page/r/CWr7lDMZxyG_EBM/review">
     <img src="icons/google.png" alt="Google Review" />
     Google Review
   </a>
-
-  <!-- FAQ Button -->
   <a class="btn" href="#faq" onclick="document.getElementById('faqModal').style.display='block'; return false;">
     <img src="icons/faq.png" alt="FAQ" />
     Frequently Asked Questions / Često Postavljena Pitanja
   </a>
-
-  <!-- Places to Visit Button -->
   <a class="btn" href="https://www.google.com/search?q=places+to+visit+in+sarajevo">
     <img src="icons/visit.png" alt="Visit" />
     Places to visit! (Click here ✅)
@@ -250,7 +258,7 @@
     <img src="icons/chipas.png" alt="Chipas" />Chipas
   </a>
 
-  <!-- Follow Us Section (styled as button links) -->
+  <!-- Follow Us Section (styled as button links similar to above) -->
   <h2 class="section-title">Follow Us</h2>
   <a class="btn" href="https://instagram.com/apartmentsartee">
     <img src="icons/instagram.png" alt="Instagram" />
@@ -264,10 +272,10 @@
   <!-- FAQ Modal -->
   <div id="faqModal" onclick="this.style.display='none'">
     <div id="faqContent" onclick="event.stopPropagation()">
-      <!-- Large Close Button -->
-      <span class="close" onclick="document.getElementById('faqModal').style.display='none'">&times;</span>
-      <h3>Frequently Asked Questions / Često Postavljena Pitanja</h3>
-      <!-- FAQ Items Container: Easy to Edit -->
+      <div class="faq-header">
+        <h3>Frequently Asked Questions / Često Postavljena Pitanja</h3>
+        <span class="close" onclick="document.getElementById('faqModal').style.display='none'">&times;</span>
+      </div>
       <div id="faqItems">
         <!-- FAQ Item 1 -->
         <details class="faq-item">
@@ -330,9 +338,9 @@
     </div>
   </div>
 
-  <!-- JavaScript for FAQ accordion and button floaty animation -->
+  <!-- JavaScript for FAQ Accordion and Staggered Animations -->
   <script>
-    // Ensure only one FAQ item is open at a time.
+    // Allow only one FAQ item open at a time.
     const faqItems = document.querySelectorAll('#faqItems details');
     faqItems.forEach(item => {
       item.addEventListener('toggle', () => {
@@ -346,7 +354,7 @@
       });
     });
 
-    // Intersection Observer for floaty buttons (and tourist map, titles, logo)
+    // Intersection Observer for staggered "floaty" animations.
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -356,7 +364,9 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.btn, .tourist-map, .section-title, .logo').forEach(el => {
+    const animElements = document.querySelectorAll('.btn, .tourist-map, .section-title, .logo');
+    animElements.forEach((el, index) => {
+      el.style.transitionDelay = `${index * 0.1}s`;
       observer.observe(el);
     });
   </script>
