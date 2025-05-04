@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apartments Artee Links</title>
   <style>
     /* Animations */
     @keyframes slideIn {
       from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      to   { transform: translateY(0); opacity: 1; }
     }
     @keyframes faqExpand {
       from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-
+    
     /* Global Styles */
     body {
       margin: 0;
@@ -49,15 +49,12 @@
       transform: scale(1.1);
     }
     
-    /* Buttons – All clickable links below the header */
+    /* Button Styles (all clickable items use the same grid layout) */
     .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       max-width: 500px;
       margin: 0.5rem auto;
       padding: 1rem;
-      background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
+      background: #1a1a1a; /* flat background */
       border-radius: 12px;
       color: white;
       text-decoration: none;
@@ -74,11 +71,35 @@
     .btn:active {
       transform: scale(0.98);
     }
-    /* All icons inside buttons are scaled to 40px */
-    .btn img {
+    /* Grid layout with three columns:
+       - Left: side icon (40px wide)
+       - Center: the text (always centered)
+       - Right: optional icon (or empty) (40px wide)
+    */
+    .btn.grid {
+      display: grid;
+      grid-template-columns: 40px 1fr 40px;
+      align-items: center;
+    }
+    .side-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+    }
+    .side-icon img {
       width: 40px;
       height: 40px;
       object-fit: cover;
+    }
+    .btn-text {
+      text-align: center;
+      font-size: 1rem;
+      line-height: 1.2;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
     
     .section-title {
@@ -86,7 +107,7 @@
       font-weight: bold;
     }
     
-    /* Tourist Map as an Image */
+    /* Tourist Map Image */
     .tourist-map {
       display: block;
       width: 90%;
@@ -101,39 +122,14 @@
       box-shadow: 0 4px 10px rgba(255,255,255,0.3);
     }
     
-    /* Food Item Layout (for Places to eat) */
-    .food-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      text-align: left;
-      /* Inherit the .btn gradient, padding, and hover effects */
-    }
-    .food-item .food-left {
-      display: flex;
-      align-items: center;
-      flex-grow: 1;
-      overflow: hidden;
-    }
-    .food-item .food-text {
-      margin-left: 0.75rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .food-item .more-dots {
-      margin-left: 1rem;
-      font-size: 1.5rem;
-      flex-shrink: 0;
-      color: #fff;
-    }
-    
     /* FAQ Modal */
     #faqModal {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
       background: rgba(0,0,0,0.85);
       z-index: 999;
       animation: slideIn 0.5s ease-in-out;
@@ -150,7 +146,7 @@
       display: flex;
       flex-direction: column;
     }
-    /* FAQ Modal Header (always visible) */
+    /* FAQ Header (sticky – always visible) */
     .faq-header {
       position: sticky;
       top: 0;
@@ -212,6 +208,12 @@
       text-decoration: underline;
     }
     
+    /* Food Items: use same grid layout, with a vertical ellipsis on the right */
+    .food-item .more-dots {
+      font-size: 1.5rem;
+      color: #fff;
+    }
+    
     @media(max-width: 480px) {
       #faqContent {
         width: 90%;
@@ -221,85 +223,80 @@
   </style>
 </head>
 <body>
-  <!-- Header: Logo, Title & Intro -->
-  <img src="https://i.imgur.com/v7LZK8o.png" alt="Artee Logo" class="logo" />
+  <!-- Header Section -->
+  <img src="https://i.imgur.com/v7LZK8o.png" alt="Artee Logo" class="logo">
   <h1>Apartments Artee</h1>
   <p>We hope you are enjoying your stay! Anything you need? Please contact us!</p>
-
+  
   <!-- Social Icons -->
   <div class="social-row">
-    <a href="https://wa.me/38761097788"><img src="icons/whatsapp.png" alt="WhatsApp" /></a>
-    <a href="https://instagram.com/apartmentsartee"><img src="icons/instagram.png" alt="Instagram" /></a>
-    <a href="https://facebook.com/apartmentsartee"><img src="icons/facebook.png" alt="Facebook" /></a>
-    <a href="https://artee.ba"><img src="icons/globe.png" alt="Website" /></a>
+    <a href="https://wa.me/38761097788"><img src="icons/whatsapp.png" alt="WhatsApp"></a>
+    <a href="https://instagram.com/apartmentsartee"><img src="icons/instagram.png" alt="Instagram"></a>
+    <a href="https://facebook.com/apartmentsartee"><img src="icons/facebook.png" alt="Facebook"></a>
+    <a href="https://artee.ba"><img src="icons/globe.png" alt="Website"></a>
   </div>
-
+  
   <!-- Tourist Map -->
-  <img src="tourist_map.jpg" alt="Free Tourist Map" class="tourist-map" onclick="window.open('https://www.google.com/maps/d/u/0/viewer?mid=1uCyDA91a0rdYrHQRMJWgpgQ0vMgq4GY', '_blank')" />
-
+  <img src="tourist_map.jpg" alt="Free Tourist Map" class="tourist-map" onclick="window.open('https://www.google.com/maps/d/u/0/viewer?mid=1uCyDA91a0rdYrHQRMJWgpgQ0vMgq4GY', '_blank')">
+  
   <!-- Primary Buttons -->
-  <a class="btn" href="https://g.page/r/CWr7lDMZxyG_EBM/review">
-    <img src="icons/google.png" alt="Google Review" />
-    Google Review
+  <a class="btn grid" href="https://g.page/r/CWr7lDMZxyG_EBM/review">
+    <span class="side-icon"><img src="icons/google.png" alt="Google Review"></span>
+    <span class="btn-text">Google Review</span>
+    <span class="side-icon"></span>
   </a>
-  <a class="btn" href="#faq" onclick="document.getElementById('faqModal').style.display='block'; return false;">
-    <img src="icons/faq.png" alt="FAQ" />
-    Frequently Asked Questions / Često Postavljena Pitanja
+  <a class="btn grid" href="#faq" onclick="document.getElementById('faqModal').style.display='block'; return false;">
+    <span class="side-icon"><img src="icons/faq.png" alt="FAQ"></span>
+    <span class="btn-text">Frequently Asked Questions / Često Postavljena Pitanja</span>
+    <span class="side-icon"></span>
   </a>
-  <a class="btn" href="https://www.google.com/search?q=places+to+visit+in+sarajevo">
-    <img src="icons/visit.png" alt="Visit" />
-    Places to visit! (Click here ✅)
+  <a class="btn grid" href="https://www.google.com/search?q=places+to+visit+in+sarajevo">
+    <span class="side-icon"><img src="icons/visit.png" alt="Visit"></span>
+    <span class="btn-text">Places to visit! (Click here ✅)</span>
+    <span class="side-icon"></span>
   </a>
-
+  
   <!-- Places to Eat Section -->
   <h2 class="section-title">Places to eat: (Click for info 👇)</h2>
-  <a class="btn food-item" href="https://g.co/kgs/p2xq6eC">
-    <div class="food-left">
-      <img src="icons/burek.png" alt="Buregdzinica Sac" />
-      <span class="food-text">Buregdžinica Sac</span>
-    </div>
-    <span class="more-dots">&#8942;</span>
+  <a class="btn grid food-item" href="https://g.co/kgs/p2xq6eC">
+    <span class="side-icon"><img src="icons/burek.png" alt="Buregdžinica Sac"></span>
+    <span class="btn-text">Buregdžinica Sac</span>
+    <span class="side-icon"><span class="more-dots">&#8942;</span></span>
   </a>
-  <a class="btn food-item" href="https://g.co/kgs/DVr6xK8">
-    <div class="food-left">
-      <img src="icons/ascinica.png" alt="ASDZ Ascinica" />
-      <span class="food-text">ASDZ Ascinica</span>
-    </div>
-    <span class="more-dots">&#8942;</span>
+  <a class="btn grid food-item" href="https://g.co/kgs/DVr6xK8">
+    <span class="side-icon"><img src="icons/ascinica.png" alt="ASDZ Ascinica"></span>
+    <span class="btn-text">ASDZ Ascinica</span>
+    <span class="side-icon"><span class="more-dots">&#8942;</span></span>
   </a>
-  <a class="btn food-item" href="https://g.co/kgs/5jmY8K7">
-    <div class="food-left">
-      <img src="icons/nanina.png" alt="Nanina Kuhinja" />
-      <span class="food-text">Nanina Kuhinja</span>
-    </div>
-    <span class="more-dots">&#8942;</span>
+  <a class="btn grid food-item" href="https://g.co/kgs/5jmY8K7">
+    <span class="side-icon"><img src="icons/nanina.png" alt="Nanina Kuhinja"></span>
+    <span class="btn-text">Nanina Kuhinja</span>
+    <span class="side-icon"><span class="more-dots">&#8942;</span></span>
   </a>
-  <a class="btn food-item" href="https://g.co/kgs/UroLfoD">
-    <div class="food-left">
-      <img src="icons/zeljo.png" alt="Cevabdzinica Zeljo" />
-      <span class="food-text">Cevabdzinica Zeljo</span>
-    </div>
-    <span class="more-dots">&#8942;</span>
+  <a class="btn grid food-item" href="https://g.co/kgs/UroLfoD">
+    <span class="side-icon"><img src="icons/zeljo.png" alt="Cevabdzinica Zeljo"></span>
+    <span class="btn-text">Cevabdzinica Zeljo</span>
+    <span class="side-icon"><span class="more-dots">&#8942;</span></span>
   </a>
-  <a class="btn food-item" href="https://g.co/kgs/XVodkQo">
-    <div class="food-left">
-      <img src="icons/chipas.png" alt="Chipas" />
-      <span class="food-text">Chipas</span>
-    </div>
-    <span class="more-dots">&#8942;</span>
+  <a class="btn grid food-item" href="https://g.co/kgs/XVodkQo">
+    <span class="side-icon"><img src="icons/chipas.png" alt="Chipas"></span>
+    <span class="btn-text">Chipas</span>
+    <span class="side-icon"><span class="more-dots">&#8942;</span></span>
   </a>
-
+  
   <!-- Follow Us Section -->
   <h2 class="section-title">Follow Us</h2>
-  <a class="btn" href="https://instagram.com/apartmentsartee">
-    <img src="icons/instagram.png" alt="Instagram" />
-    Instagram
+  <a class="btn grid" href="https://instagram.com/apartmentsartee">
+    <span class="side-icon"><img src="icons/instagram.png" alt="Instagram"></span>
+    <span class="btn-text">Instagram</span>
+    <span class="side-icon"></span>
   </a>
-  <a class="btn" href="https://facebook.com/apartmentsartee">
-    <img src="icons/facebook.png" alt="Facebook" />
-    Facebook
+  <a class="btn grid" href="https://facebook.com/apartmentsartee">
+    <span class="side-icon"><img src="icons/facebook.png" alt="Facebook"></span>
+    <span class="btn-text">Facebook</span>
+    <span class="side-icon"></span>
   </a>
-
+  
   <!-- FAQ Modal -->
   <div id="faqModal" onclick="this.style.display='none'">
     <div id="faqContent" onclick="event.stopPropagation()">
@@ -368,21 +365,5 @@
       </div>
     </div>
   </div>
-  
-  <!-- Script: FAQ Accordion (one open at a time) -->
-  <script>
-    const faqItems = document.querySelectorAll('#faqItems details');
-    faqItems.forEach(item => {
-      item.addEventListener('toggle', () => {
-        if (item.open) {
-          faqItems.forEach(otherItem => {
-            if (otherItem !== item && otherItem.open) {
-              otherItem.removeAttribute('open');
-            }
-          });
-        }
-      });
-    });
-  </script>
 </body>
 </html>
