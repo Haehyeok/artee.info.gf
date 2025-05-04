@@ -11,8 +11,7 @@
     body {
       margin: 0;
       padding: 2rem 1rem;
-      /* A subtle diagonal gradient background */
-      background: linear-gradient(135deg, #000000, #000);
+      background: #121212; /* dark background */
       color: #fff;
       font-family: 'Poppins', sans-serif;
       text-align: center;
@@ -28,11 +27,13 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     
+    /* Header Logo: load from icons folder */
     .logo {
       width: 100px;
       margin: 0 auto 10px;
       animation: slideIn 0.8s ease-out;
       touch-action: manipulation;
+      display: block;
     }
     
     /* Social Icons */
@@ -53,51 +54,49 @@
       transform: scale(1.1);
     }
     
-    /* General Button Styles – flat and modern with soft shadows */
+    /* General Button Styles – modern flat design, subtle shadow, smooth transitions */
     .btn {
       max-width: 500px;
       margin: 0.5rem auto;
-      padding: 1rem;
-      background: rgba(26, 26, 26, 0.85); /* flat dark, slightly translucent */
+      padding: 0.75rem 1rem;
+      background: #1a1a1a;
       border-radius: 12px;
       color: #fff;
       text-decoration: none;
       cursor: pointer;
-      touch-action: manipulation;
       user-select: none;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      font-weight: 500;
     }
     .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
     .btn:active {
       transform: scale(0.98);
     }
-    
-    /* Button grid layout: left icon, center text, right icon (or empty) */
+    /* Grid layout: left icon, centered text, right icon (or empty) */
     .btn.grid {
       display: grid;
       grid-template-columns: 40px 1fr 40px;
       align-items: center;
     }
     .side-icon {
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
     }
     .side-icon img {
       width: 36px;
       height: 36px;
-      object-fit: cover;
+      object-fit: contain;
     }
     .btn-text {
       text-align: center;
-      font-size: 1.1rem;
-      font-weight: 500;
+      font-size: 1rem;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -111,7 +110,6 @@
     
     /* Tourist Map Image */
     .tourist-map {
-      display: block;
       width: 90%;
       max-width: 500px;
       margin: 1rem auto;
@@ -120,11 +118,11 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .tourist-map:hover {
-      transform: scale(1.03);
+      transform: scale(1.02);
       box-shadow: 0 4px 12px rgba(255,255,255,0.3);
     }
     
-    /* FAQ Modal Styling */
+    /* FAQ Modal */
     #faqModal {
       display: none;
       position: fixed;
@@ -181,13 +179,12 @@
       padding: 0.8rem;
       margin: 0.5rem 0;
       border-radius: 8px;
-      transition: background 0.3s ease, transform 0.3s ease;
+      transition: background 0.3s, transform 0.3s;
     }
     .faq-item summary {
       cursor: pointer;
       font-weight: 600;
       list-style: none;
-      outline: none;
     }
     .faq-item summary:hover {
       background: #e0e0e0;
@@ -223,7 +220,6 @@
       max-width: 90%;
       width: 600px;
       margin: 5% auto;
-      padding: 0;
       border-radius: 12px;
       position: relative;
       display: flex;
@@ -233,9 +229,7 @@
     #imageContent img {
       width: 100%;
       border-radius: 12px;
-      display: block;
     }
-    
     @media(max-width: 480px) {
       #faqContent, #imageContent {
         width: 90%;
@@ -246,7 +240,7 @@
 </head>
 <body>
   <!-- Header Section -->
-  <img src="https://i.imgur.com/v7LZK8o.png" alt="Artee Logo" class="logo">
+  <img src="icons/artee_logo.png" alt="Artee Logo" class="logo">
   <h1>Apartments Artee</h1>
   <p>We hope you are enjoying your stay! Anything you need? Please contact us!</p>
   
@@ -259,7 +253,7 @@
   </div>
   
   <!-- Tourist Map -->
-  <img src="touristmap.jpg" alt="Free Tourist Map" class="tourist-map" onclick="window.open('https://www.google.com/maps/d/u/0/viewer?mid=1uCyDA91a0rdYrHQRMJWgpgQ0vMgq4GY','_blank')">
+  <img src="tourist_map.jpg" alt="Free Tourist Map" class="tourist-map" onclick="window.open('https://www.google.com/maps/d/u/0/viewer?mid=1uCyDA91a0rdYrHQRMJWgpgQ0vMgq4GY','_blank')">
   
   <!-- Primary Buttons -->
   <a class="btn grid" href="https://g.page/r/CWr7lDMZxyG_EBM/review">
@@ -281,7 +275,7 @@
   <!-- Fullscreen Image Button -->
   <a class="btn grid" href="#image" onclick="document.getElementById('imageModal').style.display='block'; return false;">
     <span class="side-icon"><img src="icons/fullscreen.png" alt="Fullscreen"></span>
-    <span class="btn-text">Share this App!</span>
+    <span class="btn-text">View Fullscreen Image</span>
     <span class="side-icon"></span>
   </a>
   
@@ -388,11 +382,11 @@
   <div id="imageModal" onclick="this.style.display='none'">
     <div id="imageContent" onclick="event.stopPropagation()">
       <span class="close" onclick="document.getElementById('imageModal').style.display='none'">&times;</span>
-      <img src="imagefull.jpg" alt="Fullscreen Image">
+      <img src="image_full.jpg" alt="Fullscreen Image">
     </div>
   </div>
   
-  <!-- Script: FAQ Accordion (only one FAQ open at a time) -->
+  <!-- FAQ Accordion Script (ensures only one FAQ open at a time) -->
   <script>
     const faqItems = document.querySelectorAll('#faqItems details');
     faqItems.forEach(item => {
