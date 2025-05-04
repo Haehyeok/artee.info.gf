@@ -49,7 +49,7 @@
       transform: scale(1.1);
     }
     
-    /* Buttons (all clickable links beneath header) */
+    /* Buttons (for all clickable links beneath header) */
     .btn {
       display: flex;
       align-items: center;
@@ -65,14 +65,10 @@
       touch-action: manipulation;
       user-select: none;
       
-      /* Initial floaty state */
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out, background 0.3s, transform 0.1s;
-    }
-    .btn.visible {
+      /* Initial state: visible immediately, no scroll delay */
       opacity: 1;
       transform: translateY(0);
+      transition: background 0.3s, transform 0.1s;
     }
     .btn:hover {
       background: #2a2a2a;
@@ -80,20 +76,17 @@
     .btn:active {
       transform: scale(0.95);
     }
+    /* Scale down all icons inside buttons consistently */
     .btn img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
       margin-right: 0.75rem;
     }
     
     .section-title {
       margin-top: 2rem;
       font-weight: bold;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-    .section-title.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
     
     /* Tourist Map as an Image */
@@ -104,13 +97,9 @@
       margin: 1rem auto;
       border-radius: 12px;
       cursor: pointer;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-    .tourist-map.visible {
       opacity: 1;
       transform: translateY(0);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .tourist-map:hover {
       transform: scale(1.02);
@@ -139,7 +128,7 @@
       display: flex;
       flex-direction: column;
     }
-    /* FAQ Header stays on top when scrolling */
+    /* FAQ Header always visible */
     .faq-header {
       position: sticky;
       top: 0;
@@ -258,7 +247,7 @@
     <img src="icons/chipas.png" alt="Chipas" />Chipas
   </a>
 
-  <!-- Follow Us Section (styled as button links similar to above) -->
+  <!-- Follow Us Section (styled as button links like the others) -->
   <h2 class="section-title">Follow Us</h2>
   <a class="btn" href="https://instagram.com/apartmentsartee">
     <img src="icons/instagram.png" alt="Instagram" />
@@ -338,9 +327,8 @@
     </div>
   </div>
 
-  <!-- JavaScript for FAQ Accordion and Staggered Animations -->
+  <!-- Script to ensure FAQ accordion (one open at a time) -->
   <script>
-    // Allow only one FAQ item open at a time.
     const faqItems = document.querySelectorAll('#faqItems details');
     faqItems.forEach(item => {
       item.addEventListener('toggle', () => {
@@ -353,21 +341,11 @@
         }
       });
     });
-
-    // Intersection Observer for staggered "floaty" animations.
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+    // Make elements visible immediately on page load
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll('.btn, .tourist-map, .section-title, .logo').forEach(el => {
+        el.classList.add('visible');
       });
-    }, { threshold: 0.1 });
-
-    const animElements = document.querySelectorAll('.btn, .tourist-map, .section-title, .logo');
-    animElements.forEach((el, index) => {
-      el.style.transitionDelay = `${index * 0.1}s`;
-      observer.observe(el);
     });
   </script>
 </body>
