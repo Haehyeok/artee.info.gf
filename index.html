@@ -2,252 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apartments Artee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apartments Artee Links</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
   <style>
-    /* Reset & Global Styles */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Arial', sans-serif;
-      background: #f0f0f0;
-      color: #333;
-      line-height: 1.6;
-      padding: 10px;
-    }
-    a { text-decoration: none; }
-
-    /* Container */
-    .container {
-      max-width: 600px;
-      margin: 20px auto;
-      background: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    /* Header Section */
-    .header {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 20px;
-      background: linear-gradient(135deg, #0073e6, #005bb5);
-      color: #fff;
+      padding: 2rem 1rem;
     }
-    .header img.logo {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      margin-bottom: 10px;
+    .logo {
+      width: 100px;
+      margin: 0 auto 10px;
     }
-    .header h1 {
-      font-size: 24px;
-      margin: 5px 0;
+    h1 {
+      margin: 0.3em 0 0.1em;
+      font-size: 1.5em;
     }
-    .header p {
-      font-size: 16px;
-      margin: 10px 0;
+    p {
+      color: #ccc;
+      margin-bottom: 1.5em;
     }
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 10px;
+    .socials i {
+      font-size: 1.5em;
+      margin: 0 10px;
+      color: white;
     }
-    .social-icons a {
-      color: #fff;
-      font-size: 24px;
-      transition: opacity 0.3s;
-    }
-    .social-icons a:hover {
-      opacity: 0.8;
-    }
-
-    /* Main Content */
-    .main-content { padding: 20px; }
-
-    /* Map Section */
-    .map-section {
-      position: relative;
-      margin-bottom: 20px;
-    }
-    .map-section img.map {
+    .map {
       width: 100%;
-      border-radius: 8px;
+      max-width: 500px;
+      border-radius: 20px;
+      margin: 2em auto;
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
     }
-    .map-section .map-label {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: rgba(255,255,255,0.9);
-      padding: 6px 10px;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    /* Link Buttons */
-    .link-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .link-buttons a {
+    .btn {
+      background-color: #1a1a1a;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin: 10px auto;
       display: block;
-      background: #0073e6;
-      color: #fff;
-      text-align: center;
-      padding: 12px;
-      border-radius: 4px;
-      font-size: 16px;
+      text-decoration: none;
+      max-width: 500px;
       transition: background 0.3s;
     }
-    .link-buttons a:hover {
-      background: #005bb5;
+    .btn:hover {
+      background-color: #2a2a2a;
     }
-
-    /* FAQ Section */
-    .faq-section {
-      margin-bottom: 20px;
+    .btn img {
+      border-radius: 50%;
+      width: 30px;
+      vertical-align: middle;
+      margin-right: 10px;
     }
-    .faq-button {
-      background: #e2e2e2;
-      color: #333;
-      border: none;
-      width: 100%;
-      text-align: left;
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      position: relative;
-    }
-    .faq-button::after {
-      content: "+";
-      position: absolute;
-      right: 20px;
-      font-size: 20px;
-    }
-    .faq-button.active::after {
-      content: "-";
-    }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease-out;
-      background: #f9f9f9;
-      padding: 0 12px;
-      border: 1px solid #e2e2e2;
-      border-top: none;
-      border-radius: 0 0 4px 4px;
-    }
-    .faq-answer p {
-      padding: 10px 0;
-    }
-
-    /* Places to Eat (Toggle Section) */
-    #places-eat-section {
-      display: none;
-      margin-bottom: 20px;
-    }
-    #places-eat-section .faq-button {
-      background: #d9d9d9;
+    .section-title {
+      margin-top: 2em;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Header with Logo and Welcoming Message -->
-    <div class="header">
-      <img src="https://via.placeholder.com/80" alt="Apartments Artee Logo" class="logo">
-      <h1>Apartments Artee</h1>
-      <p>We hope you are enjoying your stay! Anything you need? Please contact us!</p>
-      <div class="social-icons">
-        <!-- Replace these placeholders with actual icons or image links -->
-        <a href="https://wa.me/your-number" target="_blank">📞</a>
-        <a href="https://instagram.com/apartmentsartee" target="_blank">📸</a>
-        <a href="https://facebook.com/apartmentsartee" target="_blank">📘</a>
-        <a href="#" target="_blank">🌐</a>
-      </div>
-    </div>
+  <img src="https://i.imgur.com/v7LZK8o.png" alt="Artee Logo" class="logo" />
+  <h1>Apartments Artee</h1>
+  <p>We hope you are enjoying your stay! Anything you need? Please contact us!</p>
 
-    <!-- Main Content -->
-    <div class="main-content">
-
-      <!-- Map Section -->
-      <div class="map-section">
-        <!-- Replace with your own map image URL -->
-        <img src="https://via.placeholder.com/600x300?text=Free+Tourist+Map" alt="Free Tourist Map" class="map">
-        <div class="map-label">Free Tourist Map</div>
-      </div>
-
-      <!-- Link Buttons Section -->
-      <div class="link-buttons">
-        <a href="https://www.booking.com/hotel/ba/apartments-artee.cs.html" target="_blank">Booking.com / Apartments Artee</a>
-        <a href="https://www.google.com/search?q=apartments+artee+review" target="_blank">Leave a Review on Google</a>
-        <a href="#" id="places-visit-btn">Places to Visit! ✅</a>
-        <a href="#" id="places-eat-btn">Places to Eat: (Click for info 👇)</a>
-      </div>
-
-      <!-- FAQ Section -->
-      <div class="faq-section">
-        <button class="faq-button" id="faq-btn">Frequently Asked Questions / Često Postavljana Pitanja</button>
-        <div class="faq-answer" id="faq-answer">
-          <p>
-            <strong>Q:</strong> How do I contact Apartments Artee?<br>
-            <strong>A:</strong> Use the contact links above or get in touch via our social media channels.
-          </p>
-        </div>
-      </div>
-
-      <!-- Toggleable Restaurants List -->
-      <div class="faq-section" id="places-eat-section">
-        <button class="faq-button" id="places-eat-toggle">Restaurants</button>
-        <div class="faq-answer" id="places-eat-answer">
-          <p>
-            Buregdzinica Sac<br>
-            ASDZ Ascinica<br>
-            Nanina Kuhinja<br>
-            Cevabdzinica Zeljo<br>
-            Chipas
-          </p>
-        </div>
-      </div>
-
-    </div>
+  <div class="socials">
+    <a href="https://wa.me/your-number"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://instagram.com/yourpage"><i class="fab fa-instagram"></i></a>
+    <a href="https://facebook.com/yourpage"><i class="fab fa-facebook"></i></a>
+    <a href="https://yourwebsite.com"><i class="fas fa-globe"></i></a>
   </div>
 
-  <!-- JavaScript for Interactive Toggles -->
-  <script>
-    // FAQ toggle
-    document.getElementById("faq-btn").addEventListener("click", function() {
-      this.classList.toggle("active");
-      const ans = document.getElementById("faq-answer");
-      if (ans.style.maxHeight) {
-        ans.style.maxHeight = null;
-      } else {
-        ans.style.maxHeight = ans.scrollHeight + "px";
-      }
-    });
+  <img class="map" src="https://i.imgur.com/K8UO5jC.jpg" alt="Tourist Map" />
+  <a class="btn" href="https://yourmaplink.com">📍 Free Tourist Map 📌</a>
 
-    // Toggle Places to Eat section
-    document.getElementById("places-eat-btn").addEventListener("click", function(e) {
-      e.preventDefault();
-      const section = document.getElementById("places-eat-section");
-      // If section is hidden, display it; otherwise, hide it.
-      section.style.display = (section.style.display === "none" || section.style.display === "") ? "block" : "none";
-    });
+  <h2 class="section-title">Leave a review:</h2>
+  <a class="btn" href="https://g.page/r/your-google-review-link">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo" />
+    Google Review
+  </a>
 
-    // Optional: Toggle inside the restaurants list button for a smooth expand/collapse
-    document.getElementById("places-eat-toggle").addEventListener("click", function() {
-      this.classList.toggle("active");
-      const ans = document.getElementById("places-eat-answer");
-      if (ans.style.maxHeight) {
-        ans.style.maxHeight = null;
-      } else {
-        ans.style.maxHeight = ans.scrollHeight + "px";
-      }
-    });
-  </script>
+  <a class="btn" href="https://link-to-your-faq.com">❓ Frequently Asked Questions / Često Postavljena Pitanja</a>
+  <a class="btn" href="https://link-to-places-to-visit.com">
+    <img src="https://i.imgur.com/visiticon.jpg" alt="Visit" />
+    Places to visit! (Click here ✅)
+  </a>
+
+  <h2 class="section-title">Places to eat: (Click for info 👇)</h2>
+  <a class="btn" href="https://link-to-restaurant1.com">
+    <img src="https://i.imgur.com/food1.jpg" alt="Food 1" />
+    Buregdžinica Sac
+  </a>
+  <a class="btn" href="https://link-to-restaurant2.com">
+    <img src="https://i.imgur.com/food2.jpg" alt="Food 2" />
+    ASDZ Ascinica
+  </a>
 </body>
 </html>
