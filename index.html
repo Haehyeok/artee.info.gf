@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Apartments Artee Links</title>
-  <!-- Import Poppins for a modern, clean look -->
+  <!-- Import a clean, modern font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     /* Global Base Styles */
@@ -16,14 +16,14 @@
       font-family: 'Poppins', sans-serif;
       text-align: center;
     }
-    /* Constrain content in a centered container with some breathing space */
+    /* Container: Wider (up to 800px) with breathing room */
     .container {
-      max-width: 520px;
+      max-width: 800px;
       margin: 0 auto;
       padding: 20px;
       box-sizing: border-box;
     }
-    /* Header Logo – loaded from icons folder, circular */
+    /* Header Logo – loaded from icons folder */
     .logo {
       width: 100px;
       height: 100px;
@@ -59,7 +59,7 @@
     .social-row img:hover {
       transform: scale(1.1);
     }
-    /* Map Image: Follows the width of the container (same as buttons) */
+    /* Map Image: Full width of the container so it matches the buttons */
     .tourist-map {
       width: 100%;
       display: block;
@@ -77,7 +77,7 @@
       letter-spacing: 1px;
       margin: 15px 0 5px;
     }
-    /* Divider Gap */
+    /* Divider Gap after the review section */
     .divider {
       height: 1px;
       width: 90%;
@@ -86,9 +86,12 @@
       margin: 15px auto 30px;
     }
     /* BUTTON STYLE */
-    /* Buttons take 100% of the container's width.
-       They are flat black by default (no gradient) and show a subtle vertical gradient when pressed.
-       They have a white glow around them via a white box-shadow. */
+    /* The buttons take 100% of the container's width. They use a grid to reserve left/right areas (60px each)
+       and have centered text.
+       • By default, the button is a flat solid black with no gradient.
+       • A white glow (via box-shadow) appears along the lower part and lower sides.
+       • When pressed, a subtle vertical gradient appears and the glow intensifies.
+       • All links open in a new tab. */
     .btn-grid {
       width: 100%;
       height: 55px;
@@ -96,25 +99,24 @@
       grid-template-columns: 60px auto 60px;
       align-items: center;
       margin: 10px 0;
-      background: #000; /* flat black when not pressed */
-      border-radius: 8px;
+      background: #000;
+      border-radius: 8px;  /* slight curve */
       text-decoration: none;
       color: #fff;
       font-size: 1rem;
       font-weight: 500;
-      transition: transform 0.2s ease, background 0.2s ease;
-      box-shadow: 0 -2px 4px rgba(255,255,255,0.2),
-                  0 4px 10px rgba(0,0,0,0.8),
-                  0 0 10px rgba(255,255,255,0.6);
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      /* White glow along the lower part only */
+      box-shadow: 0 4px 8px 2px rgba(255,255,255,0.15);
     }
     .btn-grid:hover {
-      /* Slight lift on hover */
       transform: translateY(-2px);
     }
     .btn-grid:active {
-      /* When pressed, show a subtle vertical gradient */
+      /* On press, show a subtle vertical gradient and a full white glow */
       background: linear-gradient(to bottom, #000, #222);
       transform: scale(0.98);
+      box-shadow: 0 8px 16px 4px rgba(255,255,255,0.6);
     }
     .side-icon {
       width: 60px;
@@ -141,7 +143,7 @@
       font-weight: 600;
       margin: 30px 0 10px;
     }
-    /* FAQ Modal Styling */
+    /* FAQ & Fullscreen Image Modal Styles */
     #faqModal, #imageModal {
       display: none;
       position: fixed;
@@ -221,7 +223,7 @@
     .faq-item a:hover {
       text-decoration: underline;
     }
-    /* Fullscreen Image Modal Content */
+    /* Fullscreen Image Modal */
     #imageContent {
       background: transparent;
       width: 100%;
@@ -245,7 +247,7 @@
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    @media(max-width: 480px) {
+    @media (max-width: 480px) {
       #faqContent, #imageContent {
         width: 90%;
         margin: 10% auto;
@@ -276,7 +278,7 @@
       </a>
     </div>
     
-    <!-- Map Image (full container width) -->
+    <!-- Map Image (same width as buttons) -->
     <a href="https://www.google.com/maps/d/u/0/viewer?mid=1uCyDA91a0rdYrHQRMJWgpgQ0vMgq4GY" target="_blank">
       <img src="tourist_map.jpg" alt="Tourist Map" class="tourist-map">
     </a>
@@ -295,7 +297,7 @@
     <div class="divider"></div>
     
     <!-- Additional Buttons -->
-    <a href="#faq" class="btn-grid" onclick="document.getElementById('faqModal').style.display='block'; return false;">
+    <a href="#faq" class="btn-grid" onclick="document.getElementById('faqModal').style.display='block'; return false;" target="_blank">
       <span class="side-icon"><img src="icons/faq.png" alt="FAQ"></span>
       <span class="btn-text">FAQ</span>
       <span class="side-icon"></span>
@@ -305,7 +307,7 @@
       <span class="btn-text">Places to Visit! (Click here ✅)</span>
       <span class="side-icon"></span>
     </a>
-    <a href="#image" class="btn-grid" onclick="document.getElementById('imageModal').style.display='block'; return false;">
+    <a href="#image" class="btn-grid" onclick="document.getElementById('imageModal').style.display='block'; return false;" target="_blank">
       <span class="side-icon"><img src="icons/fullscreen.png" alt="Fullscreen"></span>
       <span class="btn-text">View Fullscreen Image</span>
       <span class="side-icon"></span>
@@ -429,7 +431,7 @@
     </div>
   </div>
   
-  <!-- FAQ Accordion Script -->
+  <!-- FAQ Accordion Script: Only allow one FAQ open at a time -->
   <script>
     const faqItems = document.querySelectorAll('#faqItems details');
     faqItems.forEach(item => {
