@@ -53,11 +53,11 @@
     .social-row img:hover {
       transform: scale(1.1);
     }
-    /* Map Image: exactly the same width as the buttons */
+    /* Map Image: Same width as the buttons */
     .tourist-map {
       width: 90%;
       max-width: 500px;
-      border-radius: 30px;
+      border-radius: 8px;
       margin: 20px auto;
       cursor: pointer;
       display: block;
@@ -80,32 +80,35 @@
       margin: 15px auto 30px;
       opacity: 0.5;
     }
-    /* Button Styles – using a grid layout to mimic the sample button */
+    /* Button Styles – using grid layout for fixed icon positions */
     .btn-grid {
       width: 90%;
       max-width: 500px;
-      height: 50px;
+      height: 55px; /* Increased height for a less thin look */
       display: grid;
       grid-template-columns: 50px auto 50px;
       align-items: center;
       margin: 10px auto;
-      background: #000;
+      /* Black with a vertical gradient for a gentle 3D look */
+      background: linear-gradient(to bottom, #000, #222);
       border: 2px solid #fff;
-      border-radius: 30px;
+      border-radius: 8px; /* Slight curve on the corners */
       text-decoration: none;
       color: #fff;
       font-size: 1rem;
       font-weight: 500;
       transition: transform 0.2s ease, background 0.2s ease;
+      /* Box-shadow: a small drop shadow plus a soft outer glow */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.3);
     }
     .btn-grid:hover {
-      background: #111;
-      transform: translateY(-2px);
+      background: linear-gradient(to bottom, #000, #333);
+      transform: translateY(-3px);
     }
     .btn-grid:active {
       transform: scale(0.98);
     }
-    /* Left and right icon containers – fixed 50px squares */
+    /* Left & Right Icon Containers (Fixed 50px squares) */
     .side-icon {
       width: 50px;
       height: 50px;
@@ -118,7 +121,7 @@
       height: 30px;
       object-fit: contain;
     }
-    /* Center text container ensures text is centered regardless */
+    /* Center Text Container */
     .btn-text {
       text-align: center;
       font-size: 1rem;
@@ -139,8 +142,9 @@
       display: none;
       position: fixed;
       top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.85);
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
       z-index: 1000;
       animation: slideIn 0.5s ease-in-out;
     }
@@ -234,12 +238,13 @@
     /* Keyframe animations */
     @keyframes slideIn {
       from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      to   { transform: translateY(0); opacity: 1; }
     }
     @keyframes faqExpand {
       from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+      to   { opacity: 1; transform: translateY(0); }
     }
+    
     @media(max-width: 480px) {
       #faqContent, #imageContent {
         width: 90%;
@@ -249,7 +254,7 @@
   </style>
 </head>
 <body>
-  <!-- Header Section: Artee Logo, Title, Intro -->
+  <!-- Header Section: Artee Logo, Title & Intro -->
   <img src="icons/artee_logo.png" alt="Artee Logo" class="logo">
   <h1>Apartments Artee</h1>
   <p>We hope you're enjoying your stay! Anything you need? Please contact us!</p>
@@ -288,7 +293,7 @@
   <!-- Divider Gap -->
   <div class="divider"></div>
   
-  <!-- Additional Buttons (FAQ, Places to Visit, Fullscreen Image) -->
+  <!-- Additional Buttons: FAQ, Places to Visit, Fullscreen Image -->
   <a href="#faq" class="btn-grid" onclick="document.getElementById('faqModal').style.display='block'; return false;">
     <span class="side-icon"><img src="icons/faq.png" alt="FAQ"></span>
     <span class="btn-text">FAQ</span>
@@ -359,16 +364,16 @@
           <p>Please check our "Places to Eat" section on the main QR menu: 
              <a href="https://linktr.ee/apartmentsartee" target="_blank">linktr.ee/apartmentsartee</a>
           </p>
-          <p>Molimo pogledajte "Places to Eat" na glavnom QR meniju:
+          <p>Molimo pogledajte "Places to Eat" na glavnom QR meniju: 
              <a href="https://linktr.ee/apartmentsartee" target="_blank">linktr.ee/apartmentsartee</a>
           </p>
         </details>
         <details class="faq-item">
           <summary>How do I leave a review? / Kako da ostavim recenziju?</summary>
-          <p>Please click on this link:
+          <p>Please click on this link: 
              <a href="https://g.page/r/CVch6oFZsXQiEBM/review" target="_blank">Google Review</a>
           </p>
-          <p>Molimo pritisnite ovaj link:
+          <p>Molimo pritisnite ovaj link: 
              <a href="https://g.page/r/CVch6oFZsXQiEBM/review" target="_blank">Google Review</a>
           </p>
         </details>
@@ -386,7 +391,7 @@
         </details>
         <details class="faq-item">
           <summary>Payment Information?</summary>
-          <p>Payment is accepted in EURO or BAM. Cash only—credit cards are not accepted.</p>
+          <p>Payment is accepted in EURO or BAM. Cash only; credit cards are not accepted.</p>
         </details>
         <details class="faq-item">
           <summary>Can I get a baby crib?</summary>
@@ -406,7 +411,7 @@
         </details>
         <details class="faq-item">
           <summary>Where can I exchange money?</summary>
-          <p>See this link for nearby Exchange Offices:
+          <p>See this link for nearby Exchange Offices: 
              <a href="https://www.google.com/search?q=exchange+money+near+Stari+Grad,+Sarajevo" target="_blank">Google Search</a>
           </p>
         </details>
@@ -422,7 +427,7 @@
     </div>
   </div>
   
-  <!-- FAQ Accordion Script: Only one open at a time -->
+  <!-- FAQ Accordion Script: Limit to one open at a time -->
   <script>
     const faqItems = document.querySelectorAll('#faqItems details');
     faqItems.forEach(item => {
