@@ -4,61 +4,88 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Apartments Artee Links</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
   <style>
     body {
-      background-color: #000;
+      margin: 0;
+      padding: 2rem 1rem;
+      background: #000;
       color: #fff;
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 2rem 1rem;
     }
     .logo {
       width: 100px;
       margin: 0 auto 10px;
     }
-    h1 {
-      margin: 0.3em 0 0.1em;
-      font-size: 1.5em;
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
-    p {
-      color: #ccc;
-      margin-bottom: 1.5em;
-    }
-    .socials i {
-      font-size: 1.5em;
-      margin: 0 10px;
-      color: white;
-    }
-    .map {
-      width: 100%;
-      max-width: 500px;
-      border-radius: 20px;
-      margin: 2em auto;
-      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    .social-row img, .btn img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
     }
     .btn {
-      background-color: #1a1a1a;
-      color: white;
-      padding: 15px 20px;
-      border-radius: 12px;
-      margin: 10px auto;
-      display: block;
-      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       max-width: 500px;
+      margin: 0.5rem auto;
+      padding: 1rem;
+      background: #1a1a1a;
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
       transition: background 0.3s;
     }
     .btn:hover {
-      background-color: #2a2a2a;
+      background: #2a2a2a;
     }
     .btn img {
-      border-radius: 50%;
-      width: 30px;
-      vertical-align: middle;
-      margin-right: 10px;
+      margin-right: 0.75rem;
     }
     .section-title {
-      margin-top: 2em;
+      margin-top: 2rem;
+      font-weight: bold;
+    }
+    /* FAQ Modal */
+    #faqModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 999;
+    }
+    #faqContent {
+      background: #fff;
+      color: #000;
+      max-width: 90%;
+      width: 400px;
+      margin: 5% auto;
+      padding: 1.5rem;
+      border-radius: 12px;
+      position: relative;
+    }
+    #faqContent .close {
+      position: absolute;
+      top: 0.5rem; right: 0.75rem;
+      font-size: 1.5rem;
+      color: #666;
+      cursor: pointer;
+    }
+    #faqContent details {
+      background: #f3f3f3;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+    }
+    #faqContent summary {
+      cursor: pointer;
       font-weight: bold;
     }
   </style>
@@ -68,36 +95,87 @@
   <h1>Apartments Artee</h1>
   <p>We hope you are enjoying your stay! Anything you need? Please contact us!</p>
 
-  <div class="socials">
-    <a href="https://wa.me/your-number"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://instagram.com/yourpage"><i class="fab fa-instagram"></i></a>
-    <a href="https://facebook.com/yourpage"><i class="fab fa-facebook"></i></a>
-    <a href="https://yourwebsite.com"><i class="fas fa-globe"></i></a>
+  <!-- Social Icons -->
+  <div class="social-row">
+    <a href="https://wa.me/38761097788"><img src="icons/whatsapp.png" alt="WhatsApp" /></a>
+    <a href="https://instagram.com/apartmentsartee"><img src="icons/instagram.png" alt="Instagram" /></a>
+    <a href="https://facebook.com/apartmentsartee"><img src="icons/facebook.png" alt="Facebook" /></a>
+    <a href="https://artee.ba"><img src="icons/globe.png" alt="Website" /></a>
   </div>
 
-  <img class="map" src="https://i.imgur.com/K8UO5jC.jpg" alt="Tourist Map" />
-  <a class="btn" href="https://yourmaplink.com">📍 Free Tourist Map 📌</a>
+  <!-- Map image -->
+  <a class="btn" href="https://www.google.com/maps/d/u/0/viewer?mid=1uCyDA91a0rdYrHQRMJWgpgQ0vMgq4GY">
+    <img src="icons/map_pin.png" alt="Map Pin" />
+    Free Tourist Map 📌
+  </a>
 
-  <h2 class="section-title">Leave a review:</h2>
-  <a class="btn" href="https://g.page/r/your-google-review-link">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo" />
+  <!-- Review button -->
+  <a class="btn" href="https://g.page/r/CWr7lDMZxyG_EBM/review">
+    <img src="icons/google.png" alt="Google Review" />
     Google Review
   </a>
 
-  <a class="btn" href="https://link-to-your-faq.com">❓ Frequently Asked Questions / Često Postavljena Pitanja</a>
-  <a class="btn" href="https://link-to-places-to-visit.com">
-    <img src="https://i.imgur.com/visiticon.jpg" alt="Visit" />
+  <!-- FAQ button -->
+  <a class="btn" href="#faq" onclick="document.getElementById('faqModal').style.display='block'; return false;">
+    <img src="icons/faq.png" alt="FAQ" />
+    Frequently Asked Questions / Često Postavljena Pitanja
+  </a>
+
+  <!-- Places to visit -->
+  <a class="btn" href="https://www.google.com/search?q=places+to+visit+in+sarajevo">
+    <img src="icons/visit.png" alt="Visit" />
     Places to visit! (Click here ✅)
   </a>
 
+  <!-- Food places -->
   <h2 class="section-title">Places to eat: (Click for info 👇)</h2>
-  <a class="btn" href="https://link-to-restaurant1.com">
-    <img src="https://i.imgur.com/food1.jpg" alt="Food 1" />
-    Buregdžinica Sac
-  </a>
-  <a class="btn" href="https://link-to-restaurant2.com">
-    <img src="https://i.imgur.com/food2.jpg" alt="Food 2" />
-    ASDZ Ascinica
-  </a>
+  <a class="btn" href="https://g.co/kgs/p2xq6eC"><img src="icons/burek.png" alt="Buregdzinica Sac" />Buregdžinica Sac</a>
+  <a class="btn" href="https://g.co/kgs/DVr6xK8"><img src="icons/ascinica.png" alt="ASDZ Ascinica" />ASDZ Ascinica</a>
+  <a class="btn" href="https://g.co/kgs/5jmY8K7"><img src="icons/nanina.png" alt="Nanina Kuhinja" />Nanina Kuhinja</a>
+  <a class="btn" href="https://g.co/kgs/UroLfoD"><img src="icons/zeljo.png" alt="Zeljo" />Cevabdzinica Zeljo</a>
+  <a class="btn" href="https://g.co/kgs/XVodkQo"><img src="icons/chipas.png" alt="Chipas" />Chipas</a>
+
+  <!-- FAQ Modal -->
+  <div id="faqModal" onclick="this.style.display='none'">
+    <div id="faqContent" onclick="event.stopPropagation()">
+      <span class="close" onclick="document.getElementById('faqModal').style.display='none'">&times;</span>
+      <h3>Frequently Asked Questions / Često Postavljena Pitanja</h3>
+      <details><summary>Where can I eat? / Gdje mogu jesti?</summary>
+        <p>Please take a look at our "Places to eat" section on the main QR Code page: <a href="https://linktr.ee/apartmentsartee">linktr.ee/apartmentsartee</a></p>
+        <p>Molimo pogledajte "Places to eat" dio na glavnom QR Code meniju: <a href="https://linktr.ee/apartmentsartee">linktr.ee/apartmentsartee</a></p>
+      </details>
+      <details><summary>How do I leave a review? / Kako da ostavim recenziju?</summary>
+        <p>Please click on this link: <a href="https://g.page/r/CVch6oFZsXQiEBM/review">Google Review</a></p>
+        <p>Molimo pritisnite ovaj link: <a href="https://g.page/r/CVch6oFZsXQiEBM/review">Google Review</a></p>
+      </details>
+      <details><summary>Checkout time, please?</summary>
+        <p>Check out is by 10:00. However, we can make exceptions in specific situations.</p>
+      </details>
+      <details><summary>How do I exit the parking with my car?</summary>
+        <p>Please grab an Artee Parking Exit Ticket from the small wooden box at the reception each time you want to exit the parking. Give the ticket to the man at the parking booth and leave the parking area free of charge!</p>
+      </details>
+      <details><summary>Wi-Fi Info?</summary>
+        <p>The Wi-Fi SSID and Password can be found on the Artee House Rules in your apartment!</p>
+      </details>
+      <details><summary>Payment Information?</summary>
+        <p>Payment is accepted in EURO or BAM. You can pay in cash only! Credit cards are not allowed, unfortunately...</p>
+      </details>
+      <details><summary>Can I get a baby crib?</summary>
+        <p>Yes, a crib is free of charge. Please contact us to reserve a crib.</p>
+      </details>
+      <details><summary>Parties?</summary>
+        <p>We do not host or allow parties or similar events held in our apartments. All visiting people must be checked in.</p>
+      </details>
+      <details><summary>TV and Air-Conditioning info?</summary>
+        <p>A TV and Air-Conditioning is available!</p>
+      </details>
+      <details><summary>Contact Information?</summary>
+        <p>You can contact us on the phone number: +38766075902 (Phone, Viber, WhatsApp)</p>
+      </details>
+      <details><summary>Where can I exchange money?</summary>
+        <p>Please visit this link to see a list of Exchange Offices near your location: <a href="https://www.google.com/search?q=exchange+money+near+Stari+Grad,+Sarajevo">Google Search</a></p>
+      </details>
+    </div>
+  </div>
 </body>
 </html>
