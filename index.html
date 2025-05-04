@@ -16,7 +16,7 @@
       font-family: 'Poppins', sans-serif;
       text-align: center;
     }
-    /* Header Logo – loaded from icons folder */
+    /* Header Logo – loaded from the icons folder */
     .logo {
       width: 100px;
       height: 100px;
@@ -53,7 +53,7 @@
     .social-row img:hover {
       transform: scale(1.1);
     }
-    /* Map Image: Same width as the buttons */
+    /* Map Image: It now uses the same width as the buttons */
     .tourist-map {
       width: 90%;
       max-width: 500px;
@@ -72,7 +72,7 @@
       letter-spacing: 1px;
       margin: 15px 0 5px;
     }
-    /* Divider Gap after the review button */
+    /* Divider Gap after Google Review Button */
     .divider {
       height: 1px;
       width: 80%;
@@ -80,30 +80,29 @@
       margin: 15px auto 30px;
       opacity: 0.5;
     }
-    /* Button Styles – using grid layout for fixed icon positions */
+    /* Button Styles – Black, rectangular with a subtle gradient, slight curve, and a glow */
     .btn-grid {
       width: 90%;
       max-width: 500px;
-      height: 55px; /* Increased height for a less thin look */
+      height: 55px;
       display: grid;
       grid-template-columns: 50px auto 50px;
       align-items: center;
       margin: 10px auto;
-      /* Black with a vertical gradient for a gentle 3D look */
-      background: linear-gradient(to bottom, #000, #222);
+      background: linear-gradient(to bottom, #000, #111);
       border: 2px solid #fff;
-      border-radius: 8px; /* Slight curve on the corners */
+      border-radius: 8px;
       text-decoration: none;
       color: #fff;
       font-size: 1rem;
       font-weight: 500;
       transition: transform 0.2s ease, background 0.2s ease;
-      /* Box-shadow: a small drop shadow plus a soft outer glow */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.3);
+      /* Asymmetric shadow: smaller on top, larger on bottom, plus a soft white glow */
+      box-shadow: 0 -1px 3px rgba(0,0,0,0.8), 0 4px 10px rgba(0,0,0,0.7), 0 0 10px rgba(255,255,255,0.3);
     }
     .btn-grid:hover {
-      background: linear-gradient(to bottom, #000, #333);
-      transform: translateY(-3px);
+      background: linear-gradient(to bottom, #000, #222);
+      transform: translateY(-2px);
     }
     .btn-grid:active {
       transform: scale(0.98);
@@ -137,7 +136,7 @@
       margin: 30px 0 10px;
     }
     
-    /* FAQ & Fullscreen Image Modals */
+    /* FAQ Modal Styling */
     #faqModal, #imageModal {
       display: none;
       position: fixed;
@@ -238,11 +237,11 @@
     /* Keyframe animations */
     @keyframes slideIn {
       from { transform: translateY(-50px); opacity: 0; }
-      to   { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(0); opacity: 1; }
     }
     @keyframes faqExpand {
       from { opacity: 0; transform: translateY(-10px); }
-      to   { opacity: 1; transform: translateY(0); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
     @media(max-width: 480px) {
@@ -275,7 +274,7 @@
     </a>
   </div>
   
-  <!-- Map Image (same width as buttons) -->
+  <!-- Map Image (map follows the buttons’ width) -->
   <a href="https://www.google.com/maps/d/u/0/viewer?mid=1uCyDA91a0rdYrHQRMJWgpgQ0vMgq4GY" target="_blank">
     <img src="tourist_map.jpg" alt="Tourist Map" class="tourist-map">
   </a>
@@ -361,19 +360,19 @@
       <div id="faqItems">
         <details class="faq-item">
           <summary>Where can I eat? / Gdje mogu jesti?</summary>
-          <p>Please check our "Places to Eat" section on the main QR menu: 
+          <p>Please check our "Places to Eat" section on the main QR menu:
              <a href="https://linktr.ee/apartmentsartee" target="_blank">linktr.ee/apartmentsartee</a>
           </p>
-          <p>Molimo pogledajte "Places to Eat" na glavnom QR meniju: 
+          <p>Molimo pogledajte "Places to Eat" na glavnom QR meniju:
              <a href="https://linktr.ee/apartmentsartee" target="_blank">linktr.ee/apartmentsartee</a>
           </p>
         </details>
         <details class="faq-item">
           <summary>How do I leave a review? / Kako da ostavim recenziju?</summary>
-          <p>Please click on this link: 
+          <p>Please click on this link:
              <a href="https://g.page/r/CVch6oFZsXQiEBM/review" target="_blank">Google Review</a>
           </p>
-          <p>Molimo pritisnite ovaj link: 
+          <p>Molimo pritisnite ovaj link:
              <a href="https://g.page/r/CVch6oFZsXQiEBM/review" target="_blank">Google Review</a>
           </p>
         </details>
@@ -411,7 +410,7 @@
         </details>
         <details class="faq-item">
           <summary>Where can I exchange money?</summary>
-          <p>See this link for nearby Exchange Offices: 
+          <p>See this link for nearby Exchange Offices:
              <a href="https://www.google.com/search?q=exchange+money+near+Stari+Grad,+Sarajevo" target="_blank">Google Search</a>
           </p>
         </details>
@@ -427,7 +426,7 @@
     </div>
   </div>
   
-  <!-- FAQ Accordion Script: Limit to one open at a time -->
+  <!-- FAQ Accordion Script: Ensure only one FAQ item is open at a time -->
   <script>
     const faqItems = document.querySelectorAll('#faqItems details');
     faqItems.forEach(item => {
